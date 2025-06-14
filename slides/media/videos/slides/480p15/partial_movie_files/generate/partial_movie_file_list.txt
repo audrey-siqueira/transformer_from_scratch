@@ -1,0 +1,11 @@
+# This file is used internally by FFMPEG.
+file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/pytorch-transformer/slides/media/videos/slides/480p15/partial_movie_files/generate/1185818338_2607462832_223132457.mp4'
+file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/pytorch-transformer/slides/media/videos/slides/480p15/partial_movie_files/generate/624642324_4164780324_3604355535.mp4'
+file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/pytorch-transformer/slides/media/videos/slides/480p15/partial_movie_files/generate/624642324_2045898996_524201540.mp4'
+file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/pytorch-transformer/slides/media/videos/slides/480p15/partial_movie_files/generate/624642324_3615978869_2160409725.mp4'
+file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/pytorch-transformer/slides/media/videos/slides/480p15/partial_movie_files/generate/624642324_3742638074_617846657.mp4'
+file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/pytorch-transformer/slides/media/videos/slides/480p15/partial_movie_files/generate/624642324_532255069_519715439.mp4'
+file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/pytorch-transformer/slides/media/videos/slides/480p15/partial_movie_files/generate/624642324_2079979124_312897217.mp4'
+file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/pytorch-transformer/slides/media/videos/slides/480p15/partial_movie_files/generate/624642324_3402382773_141216866.mp4'
+file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/pytorch-transformer/slides/media/videos/slides/480p15/partial_movie_files/generate/624642324_1989555746_866290096.mp4'
+file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/pytorch-transformer/slides/media/videos/slides/480p15/partial_movie_files/generate/624642324_1265228910_42937079.mp4'
