@@ -27,42 +27,49 @@ input_x_posenc        = PositionalEncoding["trim"]
 input_total           = PositionalEncoding["sum"]
 input_total_dropout   = PositionalEncoding["sum_dropout"]
 
+#ENCODER MULTIHEAD ATTENTION NORMALIZATION
+Normalization_Multihead_Attention = load("../vars/LayerNormalization_0.json")
+eps_1        = Normalization_Multihead_Attention["eps"]
+alpha_1      = Normalization_Multihead_Attention["alpha"]
+bias_1       = Normalization_Multihead_Attention["bias"]
+mean_1       = Normalization_Multihead_Attention["mean"]
+std_1        = Normalization_Multihead_Attention["std"]
+normalized_1 = Normalization_Multihead_Attention["normalization"]
+
+
+
+#ENCODER MULTIHEAD ATTENTION 
+Multihead_Attention = load("../vars/MultiHeadAttentionBlock_0.json")
+
+h       = Multihead_Attention["h"]
+d_k     = Multihead_Attention["d_k"]
+
+q       = Multihead_Attention["q"]
+w_q     = Multihead_Attention["w_q_weight"]
+query   = Multihead_Attention["query"]
+h_query = Multihead_Attention["h_query"]
+
+k       = Multihead_Attention["k"]
+w_k     = Multihead_Attention["w_k_weight"]
+key     = Multihead_Attention["key"]
+h_key   = Multihead_Attention["h_key"]
+
+
+v       = Multihead_Attention["v"]
+w_v     = Multihead_Attention["w_v_weight"]
+value   = Multihead_Attention["value"]
+h_value = Multihead_Attention["h_value"]      
+
+QK                       = Multihead_Attention["QK"]
+attention_scores_partial = Multihead_Attention["attention_scores_partial"]
+attention_scores         = Multihead_Attention["attention_scores"]
+attention_scores_dropout = Multihead_Attention["attention_scores_dropout"]
+
+AV_cont  = Multihead_Attention["AV_cont"]
+w_o      = Multihead_Attention["w_o_weight"]
+output   = Multihead_Attention["output"]
+
 '''
-eps  = vars["LayerNormalization_eps"]
-mean = vars["LayerNormalization_mean"]
-std  = vars["LayerNormalization_std"]
-normalized =vars["LayerNormalization_normalization"]
-
-
-
-
-q     = vars["MultiHeadAttentionBlock_q"]
-w_q   = vars["MultiHeadAttentionBlock_w_q_weight"]
-query = vars["MultiHeadAttentionBlock_query"]
-h_query = vars["MultiHeadAttentionBlock_h_query"]
-
-k     = vars["MultiHeadAttentionBlock_k"]
-w_k   = vars["MultiHeadAttentionBlock_w_k_weight"]
-key   = vars["MultiHeadAttentionBlock_key"]
-h_key = vars["MultiHeadAttentionBlock_h_key"]
-
-
-v     = vars["MultiHeadAttentionBlock_v"]
-w_v   = vars["MultiHeadAttentionBlock_w_v_weight"]
-value   = vars["MultiHeadAttentionBlock_value"]
-h_value = vars["MultiHeadAttentionBlock_h_value"]      
-
-QK = vars["attention_QK"]
-attention_scores_partial = vars["attention_attention_scores_partial"]
-attention_scores = vars["attention_attention_scores"]
-attention_scores_dropout = vars["attention_attention_scores_dropout"]
-
-AV = vars["MultiHeadAttentionBlock_AV"]
-AV_cont = vars["MultiHeadAttentionBlock_AV_cont"]
-w_o   = vars["MultiHeadAttentionBlock_w_o_weight"]
-output   = vars["MultiHeadAttentionBlock_output"]
-
-
 layer_output          = vars["ResidualConnection_layer_output"]
 layer_output_dropout  = vars["ResidualConnection_layer_output_dropout"]
 add                   = vars["ResidualConnection_add"]

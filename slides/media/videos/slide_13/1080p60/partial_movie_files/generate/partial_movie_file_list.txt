@@ -1,7 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/transformer/slides/media/videos/slide_13/1080p60/partial_movie_files/generate/3529212410_392273474_223132457.mp4'
-file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/transformer/slides/media/videos/slide_13/1080p60/partial_movie_files/generate/3040924799_1674410236_264621366.mp4'
-file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/transformer/slides/media/videos/slide_13/1080p60/partial_movie_files/generate/3040924799_1292991367_1214025240.mp4'
-file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/transformer/slides/media/videos/slide_13/1080p60/partial_movie_files/generate/3040924799_107177019_2397118445.mp4'
-file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/transformer/slides/media/videos/slide_13/1080p60/partial_movie_files/generate/3040924799_1524581684_2167804592.mp4'
-file 'file:/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/transformer/slides/media/videos/slide_13/1080p60/partial_movie_files/generate/3040924799_1265228910_98303315.mp4'

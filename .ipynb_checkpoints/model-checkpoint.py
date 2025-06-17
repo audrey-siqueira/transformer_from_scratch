@@ -152,7 +152,12 @@ class MultiHeadAttentionBlock(nn.Module):
             # return attention scores which can be used for visualization
             AV = (attention_scores @ value)
 
-        return AV, attention_scores
+
+        
+        return AV, attention_scores,  QK, attention_scores_partial, attention_scores_masked, attention_scores_dropout 
+    
+
+        
 
     def forward(self, q, k, v, mask):
         query = self.w_q(q) # (batch, seq_len, d_model) --> (batch, seq_len, d_model)
@@ -167,7 +172,8 @@ class MultiHeadAttentionBlock(nn.Module):
 
 
         # Calculate attention
-        AV, self.attention_scores = MultiHeadAttentionBlock.attention(h_query, h_key, h_value, mask, self.dropout)
+        AV, self.attention_scores,       QK, attention_scores_partial, attention_scores_masked, attention_scores_dropout = MultiHeadAttentionBlock.attention(h_query, h_key, h_value, mask, self.dropout)
+        #AV, self.attention_scores = MultiHeadAttentionBlock.attention(h_query, h_key, h_value, mask, self.dropout)
 
         # Combine all the heads together
         # (batch, h, seq_len, d_k) --> (batch, seq_len, h, d_k) --> (batch, seq_len, d_model)
@@ -184,6 +190,9 @@ class MultiHeadAttentionBlock(nn.Module):
                 "h": self.h,
                 "d_k": self.d_k,
                 "dropout": self.dropout.p,
+                "q"         : q.detach().cpu().tolist(),
+                "k"         : k.detach().cpu().tolist(),
+                "v"         : v.detach().cpu().tolist(),
                 "w_q_weight": self.w_q.weight.detach().cpu().tolist(),
                 "w_k_weight": self.w_k.weight.detach().cpu().tolist(),
                 "w_v_weight": self.w_v.weight.detach().cpu().tolist(),
@@ -194,8 +203,15 @@ class MultiHeadAttentionBlock(nn.Module):
                 "h_query": h_query.detach().cpu().tolist(),
                 "h_key": h_key.detach().cpu().tolist(),
                 "h_value": h_value.detach().cpu().tolist(),
-                "attention_values": AV.detach().cpu().tolist(),
+
+                "QK"                      : QK.detach().cpu().tolist(),
+                "attention_scores_partial": attention_scores_partial.detach().cpu().tolist(),
+                "attention_scores_masked" : attention_scores_masked.detach().cpu().tolist(),
+                "attention_scores_dropout": attention_scores_dropout.detach().cpu().tolist(),
+
+                
                 "attention_scores": self.attention_scores.detach().cpu().tolist(),
+                "attention_values": AV.detach().cpu().tolist(),
                 "AV_cont": AV_cont.detach().cpu().tolist(),
                 "output": output.detach().cpu().tolist(),
             }
@@ -203,7 +219,6 @@ class MultiHeadAttentionBlock(nn.Module):
 
 
         return output
-
 
 
 
