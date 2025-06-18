@@ -69,6 +69,12 @@ AV_cont  = Multihead_Attention["AV_cont"]
 w_o      = Multihead_Attention["w_o_weight"]
 output   = Multihead_Attention["output"]
 
+
+
+
+
+
+
 '''
 layer_output          = vars["ResidualConnection_layer_output"]
 layer_output_dropout  = vars["ResidualConnection_layer_output_dropout"]
