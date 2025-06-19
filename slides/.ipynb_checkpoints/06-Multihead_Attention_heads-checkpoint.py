@@ -1,9 +1,9 @@
 from manim import *
 from manim_functions import *
 from variables import *
+import math
 
 
-#%%manim -ql -v WARNING generate
 
 class generate(Scene):
     def construct(self):
@@ -12,10 +12,10 @@ class generate(Scene):
         def split(position,string_1,arg_1,string_2,arg_2,color):
 
             #Query,Key,Value
-            dic = { "matrix":  {"values": arg_1[0]                    , "scale": 0.25, "color": color},
-                    "title":   {"string": string_1                    , "scale": 0.25, "color": color},
-                    "label_x": {"string": "Embedding Dimensions"      , "scale": 0.25, "color": color, "value": d_model},
-                    "label_y": {"string": "Tokens"                    , "scale": 0.25, "color": color, "value": len(input_x)}
+            dic = { "matrix":  {"values": arg_1[0]                    , "scale": 0.3, "color": color},
+                    "title":   {"string": string_1                    , "scale": 0.3, "color": color},
+                    "label_x": {"string": "Embedding Dimensions"      , "scale": 0.3, "color": color, "value": d_model},
+                    "label_y": {"string": "Tokens"                    , "scale": 0.3, "color": color, "value": len(input_x)}
                   }
             group = build_matrix(self,dic)
             group.to_edge(position, buff=0.3)
@@ -29,20 +29,20 @@ class generate(Scene):
 
 
             #h_Query , h_Key, h_Value
-            dic = { "matrix":  {"values": arg_2[0][0]                 , "scale": 0.25, "color": color},
-                    "title":   {"string": f"{string_2} 1"             , "scale": 0.25, "color": color},
-                    "label_x": {"string": "Dimensions"                 , "scale": 0.25, "color": color, "value": d_model//2},
-                    "label_y": {"string": "Tokens"                    , "scale": 0.25, "color": color, "value": len(input_x)}
+            dic = { "matrix":  {"values": arg_2[0][0]                 , "scale": 0.3, "color": color},
+                    "title":   {"string": f"{string_2} 1"             , "scale": 0.3, "color": color},
+                    "label_x": {"string": "Dimensions"                 , "scale": 0.3, "color": color, "value": d_model//2},
+                    "label_y": {"string": "Tokens"                    , "scale": 0.3, "color": color, "value": len(input_x)}
                   }
             head_1 = build_matrix(self,dic)
             head_1.next_to(arrow, buff=0.8)
             self.play(Write(head_1))
 
             #h_Query , h_Key, h_Value
-            dic = { "matrix":  {"values": arg_2[0][1]                 , "scale": 0.25, "color": color},
-                    "title":   {"string": f"{string_2} 2"             , "scale": 0.25, "color": color},
-                    "label_x": {"string": "Dimensions"                 , "scale": 0.25, "color": color, "value": d_model//2},
-                    "label_y": {"string": "Tokens"                    , "scale": 0.25, "color": color, "value": len(input_x)}
+            dic = { "matrix":  {"values": arg_2[0][1]                 , "scale": 0.3, "color": color},
+                    "title":   {"string": f"{string_2} 2"             , "scale": 0.3, "color": color},
+                    "label_x": {"string": "Dimensions"                , "scale": 0.3, "color": color, "value": d_model//2},
+                    "label_y": {"string": "Tokens"                    , "scale": 0.3, "color": color, "value": len(input_x)}
                   }
             head_2 = build_matrix(self,dic)
             head_2.next_to(head_1, buff=0.5)
@@ -72,7 +72,3 @@ class generate(Scene):
 
 
         self.wait(60)
-
-
-
-

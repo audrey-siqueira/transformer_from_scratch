@@ -1,9 +1,8 @@
 from manim import *
 from manim_functions import *
 from variables import *
+import math
 
-
-#%%manim -qh -v WARNING generate
 
 class generate(Scene):
     def construct(self):
@@ -96,7 +95,7 @@ class generate(Scene):
         dic = {  "matrix":  {"values":  pe[0]                   , "scale": 0.3, "color": PURE_GREEN},
                  "title":   {"string": "Positional Encoding Map", "scale": 0.3, "color": PURE_GREEN},
                  "label_x": {"string": "Embedding Dimensions"   , "scale": 0.3, "color": PURE_GREEN, "value": d_model },
-                 "label_y": {"string": "Max Number of Tokens"   , "scale": 0.3, "color": PURE_GREEN, "value": seq_len}
+                 "label_y": {"string": "Tokens"                 , "scale": 0.3, "color": PURE_GREEN, "value": seq_len}
               }
         group = build_matrix(self,dic)
         group.next_to(arrow, RIGHT, buff=0.6)

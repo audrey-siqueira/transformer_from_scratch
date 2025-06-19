@@ -1,9 +1,8 @@
 from manim import *
 from manim_functions import *
 from variables import *
+import math
 
-
-#%%manim -qh -v WARNING generate
 
 class generate(Scene):
     def construct(self):
@@ -28,10 +27,10 @@ class generate(Scene):
 
 
               #q,v,k
-              dic = { "matrix":  {"values": arg_1[0]                                 , "scale": 0.25, "color": WHITE},
-                      "title":   {"string": f"Normalized Total Input ({string_1})"   , "scale": 0.25, "color": WHITE},
-                      "label_x": {"string": "Embedding Dimensions"                   , "scale": 0.25, "color": WHITE, "value": d_model },
-                      "label_y": {"string": "Tokens"                                 , "scale": 0.25, "color": WHITE, "value": len(input_x)}
+              dic = { "matrix":  {"values": arg_1[0]                                 , "scale": 0.3, "color": WHITE},
+                      "title":   {"string": f"Normalized Total Input ({string_1})"   , "scale": 0.3, "color": WHITE},
+                      "label_x": {"string": "Embedding Dimensions"                   , "scale": 0.3, "color": WHITE, "value": d_model },
+                      "label_y": {"string": "Tokens"                                 , "scale": 0.3, "color": WHITE, "value": len(input_x)}
                     }
               group_1 = build_matrix(self,dic)
               group_1.next_to(equal, RIGHT,  buff=0.2)
@@ -44,10 +43,10 @@ class generate(Scene):
 
 
               #weights Q,K,V
-              dic = { "matrix":  {"values": arg_2                       , "scale": 0.25, "color": YELLOW},
-                      "title":   {"string": f"Weights {string_2}"       , "scale": 0.25, "color": YELLOW},
-                      "label_x": {"string": "Embedding Dimensions"      , "scale": 0.25, "color": YELLOW, "value": d_model},
-                      "label_y": {"string": "Embedding Dimensions"      , "scale": 0.25, "color": YELLOW, "value": d_model}
+              dic = { "matrix":  {"values": arg_2                       , "scale": 0.3, "color": YELLOW},
+                      "title":   {"string": f"Weights {string_2}"       , "scale": 0.3, "color": YELLOW},
+                      "label_x": {"string": "Embedding Dimensions"      , "scale": 0.3, "color": YELLOW, "value": d_model},
+                      "label_y": {"string": "Embedding Dimensions"      , "scale": 0.3, "color": YELLOW, "value": d_model}
                     }
               group_2 = build_matrix(self,dic)
               group_2.next_to(times, RIGHT,  buff=0.5)
@@ -71,10 +70,10 @@ class generate(Scene):
 
 
               #Query,Key,Value
-              dic = { "matrix":  {"values": arg_3[0]                    , "scale": 0.25, "color": color},
-                      "title":   {"string": string_3                    , "scale": 0.25, "color": color},
-                      "label_x": {"string": "Embedding Dimensions"      , "scale": 0.25, "color": color, "value": d_model},
-                      "label_y": {"string": "Tokens"                    , "scale": 0.25, "color": color, "value": len(input_x)}
+              dic = { "matrix":  {"values": arg_3[0]                    , "scale": 0.3, "color": color},
+                      "title":   {"string": string_3                    , "scale": 0.3, "color": color},
+                      "label_x": {"string": "Embedding Dimensions"      , "scale": 0.3, "color": color, "value": d_model},
+                      "label_y": {"string": "Tokens"                    , "scale": 0.3, "color": color, "value": len(input_x)}
                     }
               group = build_matrix(self,dic)
               group.next_to(equal, RIGHT, buff=0.3)

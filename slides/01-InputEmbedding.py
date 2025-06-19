@@ -11,7 +11,7 @@ class generate(Scene):
         #Input Tokens
         formatted_vector = [[f"{num}" for num in input_x]]
         vector = Matrix(formatted_vector).scale(0.35).set_color(WHITE).to_edge(LEFT, buff=0.2)
-        label_vector = Tex("Input Tokens", color=WHITE).scale(0.45).next_to(vector, UP)
+        label_vector = Tex("Input Tokens", color=WHITE).scale(0.35).next_to(vector, UP)
         self.play(Write(vector), Write(label_vector))
 
 
@@ -31,7 +31,7 @@ class generate(Scene):
         
         #Embedding Map
         dic = { "matrix":  {"values": matrix_lines         , "scale": 0.35, "color": PURE_GREEN},
-                "title":   {"string": "Embedding Map"       , "scale": 0.45, "color": PURE_GREEN},
+                "title":   {"string": "Embedding Map"       , "scale": 0.35, "color": PURE_GREEN},
                 "label_x": {"string": "Embedding Dimensions", "scale": 0.35, "color": PURE_GREEN, "value": d_model },
                 "label_y": {"string": "Embedding Map Size" , "scale": 0.35, "color": PURE_GREEN, "value": vocab_size}
               }
@@ -57,7 +57,7 @@ class generate(Scene):
 
         #white squares
         highlights = VGroup()
-        indices = list(range(2, len(rows), 2))[:5]
+        indices = list(range(2, len(rows), 2))[:3]
         for i in indices:
             rect = SurroundingRectangle(rows[i], color=WHITE, buff=0.1)
             highlights.add(rect)
@@ -66,13 +66,13 @@ class generate(Scene):
 
 
         #arrow
-        arrow = MathTex(r"\longrightarrow", color=WHITE).scale(1).next_to(group, RIGHT, buff=0.5).shift(UP * 2.3)
+        arrow = MathTex(r"\longrightarrow", color=WHITE).scale(1).next_to(group, RIGHT, buff=0.5).shift(UP * 1.6)
         self.play(Write(arrow))
 
 
         #Embedded
         dic = {  "matrix":  {"values": input_x_embedded      , "scale": 0.35, "color": WHITE},
-                 "title":   {"string": "Embedding Input"     , "scale": 0.45, "color": WHITE},
+                 "title":   {"string": "Embedding Input"     , "scale": 0.35, "color": WHITE},
                  "label_x": {"string": "Embedding Dimensions", "scale": 0.35, "color": WHITE, "value": d_model },
                  "label_y": {"string": "Tokens"              , "scale": 0.35, "color": WHITE, "value": len(input_x_embedded)}
               }
@@ -82,7 +82,7 @@ class generate(Scene):
 
 
         #arrow
-        arrow = MathTex(r"\downarrow", color=WHITE).scale(1.3).next_to(group, DOWN, buff=0.3).shift(LEFT * 0.8)
+        arrow = MathTex(r"\downarrow", color=WHITE).scale(1.3).next_to(group, DOWN, buff=0.6).shift(LEFT * 0.8)
         self.play(Write(arrow))
 
         #square
@@ -92,12 +92,12 @@ class generate(Scene):
 
         #scaled
         dic = {  "matrix":  {"values": input_x_embedded_scaled      , "scale": 0.35, "color": WHITE},
-                 "title":   {"string": "Scaled Embedding Input"     , "scale": 0.45, "color": WHITE},
+                 "title":   {"string": "Scaled Embedding Input"     , "scale": 0.35, "color": WHITE},
                  "label_x": {"string": "Embedding Dimensions"       , "scale": 0.35, "color": WHITE, "value": d_model },
                  "label_y": {"string": "Tokens"                     , "scale": 0.35, "color": WHITE, "value": len(input_x_embedded)}
               }
         group = build_matrix(self,dic)
-        group.next_to(arrow, DOWN, buff=0.3).shift(RIGHT * 0.8)
+        group.next_to(arrow, DOWN, buff=0.5).shift(RIGHT * 0.8)
         self.play(Write(group))
 
         self.wait(60)

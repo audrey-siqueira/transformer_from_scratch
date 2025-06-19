@@ -20,10 +20,6 @@ class BilingualDataset(Dataset):
         self.eos_token = torch.tensor([tokenizer_tgt.token_to_id("[EOS]")], dtype=torch.int64)
         self.pad_token = torch.tensor([tokenizer_tgt.token_to_id("[PAD]")], dtype=torch.int64)
 
-        self.ds = [ item for item in ds
-                    if len(tokenizer_src.encode(item['translation'][src_lang]).ids) <= 3
-                    and len(tokenizer_tgt.encode(item['translation'][tgt_lang]).ids) <= 3]
-
 
     def __len__(self):
         return len(self.ds)

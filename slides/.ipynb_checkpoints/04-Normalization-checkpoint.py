@@ -1,8 +1,7 @@
 from manim import *
 from manim_functions import *
 from variables import *
-
-#%%manim -ql -v WARNING generate
+import math
 
 
 class generate(Scene):
@@ -21,10 +20,10 @@ class generate(Scene):
        
 
         #total input dropout
-        dic = { "matrix":  {"values": input_total_dropout[0]    ,"scale": 0.4, "color": WHITE},
-                "title":   {"string": "\\text{Total Input}"     , "scale": 0.4, "color": WHITE},
-                "label_x": {"string": "Embedding Dimensions"    , "scale": 0.4, "color": WHITE, "value": d_model},
-                "label_y": {"string": "Tokens"                  , "scale": 0.4, "color": WHITE, "value": len(input_x)}
+        dic = { "matrix":  {"values": input_total_dropout[0]    ,"scale": 0.35, "color": WHITE},
+                "title":   {"string": "\\text{Total Input}"     , "scale": 0.35, "color": WHITE},
+                "label_x": {"string": "Embedding Dimensions"    , "scale": 0.35, "color": WHITE, "value": d_model},
+                "label_y": {"string": "Tokens"                  , "scale": 0.35, "color": WHITE, "value": len(input_x)}
               }
         group_1 = build_matrix(self,dic,f=True)
         group_1.to_edge(LEFT*0.2 + UP*7, buff=0.4)
@@ -82,10 +81,10 @@ class generate(Scene):
 
 
         #partial norm
-        dic = { "matrix":  {"values": norm_matrix                          ,"scale": 0.4, "color": WHITE},
-                "title":   {"string": "\\text{Partial Normalization}"     , "scale": 0.4, "color": WHITE},
-                "label_x": {"string": "Embedding Dimensions"               , "scale": 0.4, "color": WHITE, "value": d_model},
-                "label_y": {"string": "Tokens"                             , "scale": 0.4, "color": WHITE, "value": len(input_x)}
+        dic = { "matrix":  {"values": norm_matrix                          ,"scale": 0.35, "color": WHITE},
+                "title":   {"string": "\\text{Partial Normalization}"     , "scale": 0.35, "color": WHITE},
+                "label_x": {"string": "Embedding Dimensions"               , "scale": 0.35, "color": WHITE, "value": d_model},
+                "label_y": {"string": "Tokens"                             , "scale": 0.35, "color": WHITE, "value": len(input_x)}
               }
         group_2 = build_matrix(self,dic,f=True)
         group_2.next_to(group_1,RIGHT*3.3, buff=0.4)
@@ -100,8 +99,8 @@ class generate(Scene):
 
         #Alpha
         formatted_vector = [[f"{num:.4f}" for num in alpha_1]]
-        vector = Matrix(formatted_vector, h_buff=2).scale(0.4).set_color(YELLOW).next_to(times, UP, buff=0.2)
-        label_vector = Tex("Alpha", color=YELLOW).scale(0.4).next_to(vector, UP*0.5)
+        vector = Matrix(formatted_vector, h_buff=2).scale(0.35).set_color(YELLOW).next_to(times, UP, buff=0.2)
+        label_vector = Tex("Alpha", color=YELLOW).scale(0.35).next_to(vector, UP*0.5)
         self.play(Write(vector), Write(label_vector))
 
 
@@ -113,8 +112,8 @@ class generate(Scene):
 
         #Bias
         formatted_vector = [[f"{num:.4f}" for num in bias_1]]
-        vector = Matrix(formatted_vector, h_buff=2).scale(0.4).set_color(YELLOW).next_to(plus, DOWN, buff=0.5)
-        label_vector = Tex("Bias", color=YELLOW).scale(0.4).next_to(vector, UP*0.5)
+        vector = Matrix(formatted_vector, h_buff=2).scale(0.35).set_color(YELLOW).next_to(plus, DOWN, buff=0.5)
+        label_vector = Tex("Bias", color=YELLOW).scale(0.35).next_to(vector, UP*0.5)
         self.play(Write(vector), Write(label_vector))
 
 
@@ -126,10 +125,10 @@ class generate(Scene):
 
 
         #final input
-        dic = { "matrix":  {"values": normalized_1[0]                      ,"scale": 0.4, "color": WHITE},
-                "title":   {"string": "\\text{Normalized Total Input}"     , "scale": 0.4, "color": WHITE},
-                "label_x": {"string": "Embedding Dimensions"               , "scale": 0.4, "color": WHITE, "value": d_model},
-                "label_y": {"string": "Tokens"                             , "scale": 0.4, "color": WHITE, "value": len(input_x)}
+        dic = { "matrix":  {"values": normalized_1[0]                      ,"scale": 0.35, "color": WHITE},
+                "title":   {"string": "\\text{Normalized Total Input}"     , "scale": 0.35, "color": WHITE},
+                "label_x": {"string": "Embedding Dimensions"               , "scale": 0.35, "color": WHITE, "value": d_model},
+                "label_y": {"string": "Tokens"                             , "scale": 0.35, "color": WHITE, "value": len(input_x)}
               }
         group_3 = build_matrix(self,dic,f=True)
         group_3.next_to(group_2,RIGHT*3.3, buff=0.4)

@@ -62,6 +62,7 @@ h_value = Multihead_Attention["h_value"]
 
 QK                       = Multihead_Attention["QK"]
 attention_scores_partial = Multihead_Attention["attention_scores_partial"]
+attention_scores_masked = Multihead_Attention["attention_scores_masked"]
 attention_scores         = Multihead_Attention["attention_scores"]
 attention_scores_dropout = Multihead_Attention["attention_scores_dropout"]
 

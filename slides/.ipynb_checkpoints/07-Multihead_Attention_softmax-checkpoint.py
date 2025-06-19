@@ -1,9 +1,8 @@
 from manim import *
 from manim_functions import *
 from variables import *
+import math
 
-
-#%%manim -ql -v WARNING generate
 
 
 class generate(Scene):
@@ -18,7 +17,7 @@ class generate(Scene):
                           ).scale(0.5).to_edge(UP + LEFT)
 
         explanation = MathTex(r"\text{where:}  \quad   d_k = 2",
-                              color=WHITE).scale(0.6).next_to(formula, RIGHT, buff= 2)
+                              color=WHITE).scale(0.6).next_to(formula, RIGHT, buff= 7)
 
         self.play(Write(formula))
         self.play(Write(explanation))
@@ -31,7 +30,7 @@ class generate(Scene):
             dic = { "matrix":  {"values": arg_1                   , "scale": 0.3, "color": color_1},
                     "title":   {"string": f"Query Head {p}"           , "scale": 0.3, "color":  color_1},
                     "label_x": {"string": "Dimensions"           , "scale": 0.3, "color": color_1, "value": d_model//2},
-                    "label_y": {"string": "Tokens"                , "scale": 0.3, "color": color_1, "value": len(input)}
+                    "label_y": {"string": "Tokens"                , "scale": 0.3, "color": color_1, "value": len(input_x)}
                   }
             group_1 = build_matrix(self,dic)
             group_1.to_edge(position , buff=0.3)
@@ -45,7 +44,7 @@ class generate(Scene):
             dic = { "matrix":  {"values": arg_2                  , "scale": 0.3, "color": color_2},
                     "title":   {"string": f"Key Head {p}"          , "scale": 0.3, "color": color_2},
                     "label_x": {"string": "Dimensions"          , "scale": 0.3, "color": color_2, "value": d_model//2},
-                    "label_y": {"string": "Tokens"               , "scale": 0.3, "color": color_2, "value": len(input)}
+                    "label_y": {"string": "Tokens"               , "scale": 0.3, "color": color_2, "value": len(input_x)}
                   }
             group_2 = build_matrix(self,dic)
             group_2.next_to(times, buff=0.35)
@@ -71,7 +70,7 @@ class generate(Scene):
             dic = { "matrix":  {"values": arg_3                                     , "scale": 0.3, "color": WHITE},
                     "title":   {"string": "\\mathbf{Q} \\cdot \\mathbf{K}^{\\top}"  , "scale": 0.3, "color": WHITE},
                     "label_x": {"string": ""                                        , "scale": 0.3, "color": WHITE, "value": ""},
-                    "label_y": {"string": "Tokens"                                  , "scale": 0.3, "color": WHITE, "value": len(input)}
+                    "label_y": {"string": "Tokens"                                  , "scale": 0.3, "color": WHITE, "value": len(input_x)}
                   }
             group_3 = build_matrix(self,dic, f=True)
             group_3.next_to(equal, buff=0.2).align_to(group_1,UP) 
@@ -88,7 +87,7 @@ class generate(Scene):
             dic = { "matrix":  {"values": arg_4                                                       , "scale": 0.3, "color": WHITE},
                     "title":   {"string": "\\frac{\\mathbf{Q} \\cdot \\mathbf{K}^\\top}{\\sqrt{d_k}}" , "scale": 0.3, "color": WHITE},
                     "label_x": {"string": ""                                                          , "scale": 0.3, "color": WHITE, "value": ""},
-                    "label_y": {"string": "Tokens"                                                    , "scale": 0.3, "color": WHITE, "value": len(input)}
+                    "label_y": {"string": "Tokens"                                                    , "scale": 0.3, "color": WHITE, "value": len(input_x)}
                   }
             group_4 = build_matrix(self,dic,f=True)
             group_4.next_to(arrow, buff=0.2).align_to(group_3,DOWN) 
@@ -106,7 +105,7 @@ class generate(Scene):
             dic = { "matrix":  {"values": arg_5                                                                                       , "scale": 0.3, "color": WHITE},
                     "title":   {"string": "\\text{softmax}\\left( \\frac{\\mathbf{Q} \\cdot \\mathbf{K}^\\top}{\\sqrt{d_k}} \\right)" , "scale": 0.3, "color": WHITE},
                     "label_x": {"string": ""                 , "scale": 0.3, "color": WHITE, "value": ""},
-                    "label_y": {"string": "Tokens"          , "scale": 0.3, "color": WHITE, "value": len(input)}
+                    "label_y": {"string": "Tokens"          , "scale": 0.3, "color": WHITE, "value": len(input_x)}
                   }
             group_5 = build_matrix(self,dic,f=True)
             group_5.next_to(arrow, buff=0.4).align_to(group_3,DOWN) 
