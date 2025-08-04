@@ -1,10 +1,40 @@
+""" Class Pre
+Purpose: Creates a PyTorch dataset for translation tasks. 
+It tokenizes sentence pairs, adds <SOS>, <EOS>, <PAD> tokens, and generates input/output tensors and masks for Transformer models.
+
+Inputs:
+ds	                - Dataset (dicts)	Dataset containing translation pairs (e.g., from HuggingFace load_dataset).
+tokenizer_src       - Tokenizer	Tokenizer for the source language.
+tokenizer_tgt       - Tokenizer	Tokenizer for the target language.
+src_lang            - Source language code (e.g., 'en').
+tgt_lang            - Target language code (e.g., 'fr').
+seq_len	            - Fixed sequence length for input/output tensors.
+
+
+Output of __len__()
+The number of translation pairs (samples) in the dataset.
+
+
+Outputs from __getitem__ (returned by dataset[idx]:
+encoder_input	   - Tensor(seq_len)	Tokenized source sentence with <SOS>, <EOS>, and <PAD> tokens.
+decoder_input	   - Tensor(seq_len)	Tokenized target sentence with <SOS> and padding.
+encoder_mask	   - Tensor(1,1,L)	Boolean mask (1 for real tokens, 0 for padding) for the encoder.
+decoder_mask	   - Tensor(1,L,L)	Causal mask + padding mask for the decoder.
+label	           - Tensor(seq_len)	Target sentence tokens with <EOS> and padding, used for loss computation.
+src_text	       - Original source sentence text.
+tgt_text	       - Original target sentence text.
+
+"""
+
+
+
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset
 
 
 
-class BilingualDataset(Dataset):
+class Padding(Dataset):
 
     def __init__(self, ds, tokenizer_src, tokenizer_tgt, src_lang, tgt_lang, seq_len):
         super().__init__()
@@ -82,7 +112,7 @@ class BilingualDataset(Dataset):
             "encoder_input": encoder_input,  # (seq_len)
             "decoder_input": decoder_input,  # (seq_len)
             "encoder_mask": (encoder_input != self.pad_token).unsqueeze(0).unsqueeze(0).int(), # (1, 1, seq_len)
-            "decoder_mask": (decoder_input != self.pad_token).unsqueeze(0).int() & causal_mask(decoder_input.size(0)), # (1, seq_len) & (1, seq_len, seq_len),
+            "decoder_mask": (decoder_input != self.pad_token).unsqueeze(0).int() & causal_mask(decoder_input.size(0)), #(1,seq_len) & (1,seq_len, seq_len),
             "label": label,  # (seq_len)
             "src_text": src_text,
             "tgt_text": tgt_text,
