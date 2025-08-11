@@ -1,7 +1,7 @@
 import os
 import json
 
-def save_to_json(debug_data, base_name="DebugOutput", dir_path="vars"):
+def save_to_json(debug_data, base_name="DebugOutput", dir_path="slides/vars"):
     # Cria o diretório se ele não existir
     os.makedirs(dir_path, exist_ok=True)
 

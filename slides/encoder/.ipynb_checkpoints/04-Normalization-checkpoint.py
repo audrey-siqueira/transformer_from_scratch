@@ -1,7 +1,11 @@
 from manim import *
-from manim_functions import *
-from variables import *
 import math
+
+import sys
+sys.path.append("..") 
+from variables import *
+from manim_functions import *
+
 
 
 class generate(Scene):
@@ -54,7 +58,7 @@ class generate(Scene):
             diff_squares = [(x - mean_val)**2 for x in row_vals]
             diff_squares_str = " + ".join([f"({x:.4f} - {mean_val:.4f})^2" for x in row_vals])
         
-            std_calc = MathTex(r"\sigma = \sqrt{\frac{" + diff_squares_str + "}{" + str(len(row_vals)-1) + "}} = " + f"{std_val:.4f}", color=PURE_GREEN)
+            std_calc = MathTex(r"\sigma = \sqrt{\frac{" + diff_squares_str + r"}{" + str(len(row_vals)) + r"-1}}" + " = " + f"{std_val:.4f}",color=PURE_GREEN)
             std_calc.scale(0.4).next_to(target, RIGHT + DOWN*0.5, buff=0.4)
        
 

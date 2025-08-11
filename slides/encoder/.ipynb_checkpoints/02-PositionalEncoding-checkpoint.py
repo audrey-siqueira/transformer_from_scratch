@@ -1,7 +1,10 @@
 from manim import *
-from manim_functions import *
-from variables import *
 import math
+
+import sys
+sys.path.append("..") 
+from variables import *
+from manim_functions import *
 
 
 class generate(Scene):
@@ -32,7 +35,7 @@ class generate(Scene):
         self.play(Write(forms))
 
         #positions
-        vector = Matrix(position).scale(0.3).set_color(WHITE).next_to(title, DOWN, buff=1.5).to_edge(LEFT, buff=0.5)
+        vector = Matrix(np.array(position, dtype=int).tolist()).scale(0.3).set_color(WHITE).next_to(title, DOWN, buff=1.5).to_edge(LEFT, buff=0.5)
         title = Tex("Positions", color=WHITE).scale(0.4).next_to(vector, UP)
         label_y = Tex(f"Tokens = {len(input_x_embedded)}", color=WHITE).scale(0.3)
         label_y.rotate(-PI / 2)
@@ -113,14 +116,16 @@ class generate(Scene):
         arrow = MathTex(r"\longrightarrow", color=WHITE).scale(0.5).next_to(group, RIGHT, buff=0.3)
         self.play(Write(arrow))
 
-        #Input Tokens
-        formatted_vector = [[f"{num}" for num in input_x]]
-        vector = Matrix(formatted_vector).scale(0.3).set_color(WHITE).next_to(arrow, RIGHT, buff=0.3)
-        label_vector = Tex("Input Tokens", color=WHITE).scale(0.3).next_to(vector, UP)
-        self.play(Write(vector), Write(label_vector))
+        #position
+        vector = Matrix(np.array(position, dtype=int).tolist()).scale(0.3).set_color(WHITE).next_to(arrow, RIGHT, buff=0.7)
+        label_vector = Tex("Positions", color=WHITE).scale(0.3).next_to(vector, UP)
+        label_y = Tex(f"Tokens = {len(input_x_embedded)}", color=WHITE).scale(0.3)
+        label_y.rotate(-PI / 2)
+        label_y.next_to(vector, LEFT, buff = 0.2)
+        self.play(Write(vector), Write(label_vector), Write(label_y))
 
         #equal
-        equal = MathTex(r"=", color=WHITE).scale(0.5).next_to(vector, RIGHT, buff=0.2)
+        equal = MathTex(r"=", color=WHITE).scale(0.5).next_to(vector, RIGHT, buff=0.5)
         self.play(Write(equal))
 
 

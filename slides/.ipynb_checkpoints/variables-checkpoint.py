@@ -1,13 +1,19 @@
+from pathlib import Path
 import json
 
-def load(filename):
-    with open(filename, "r") as f:
+SLIDES_DIR = Path(__file__).resolve().parent      # .../slides
+VARS_DIR   = SLIDES_DIR / "vars"                  # .../slides/vars
+
+def load(name: str):
+    path = VARS_DIR / name                        # sempre em slides/vars
+    # print(f"Lendo: {path}")  # debug opcional
+    with path.open("r", encoding="utf-8") as f:
         return json.load(f)
 
 
 
 #ENCODER INPUT EMBEDDING
-InputEmbedding = load("../vars/InputEmbedding_0.json")
+InputEmbedding = load("InputEmbedding_0.json")
 d_model          = InputEmbedding["d_model"]
 vocab_size       = InputEmbedding["vocab_size"]
 embedding_map    = InputEmbedding["embedding_weight"]
@@ -17,10 +23,10 @@ input_x_embedded_scaled   = InputEmbedding["scaled"][0]
 
 
 #ENCODER POSITIONAL ENCODING
-PositionalEncoding = load("../vars/PositionalEncoding_0.json")
+PositionalEncoding = load("PositionalEncoding_0.json")
 seq_len               = PositionalEncoding["seq_len"]
 dropout               = PositionalEncoding["dropout"]
-position              = PositionalEncoding["position"]
+position              = PositionalEncoding["position"]  
 pe                    = PositionalEncoding["posenc"]
 div_term              = PositionalEncoding["div_term"]
 input_x_posenc        = PositionalEncoding["trim"]
@@ -28,7 +34,7 @@ input_total           = PositionalEncoding["sum"]
 input_total_dropout   = PositionalEncoding["sum_dropout"]
 
 #ENCODER MULTIHEAD ATTENTION NORMALIZATION
-Normalization_Multihead_Attention = load("../vars/LayerNormalization_0.json")
+Normalization_Multihead_Attention = load("LayerNormalization_0.json")
 eps_1        = Normalization_Multihead_Attention["eps"]
 alpha_1      = Normalization_Multihead_Attention["alpha"]
 bias_1       = Normalization_Multihead_Attention["bias"]
@@ -39,7 +45,7 @@ normalized_1 = Normalization_Multihead_Attention["normalization"]
 
 
 #ENCODER MULTIHEAD ATTENTION 
-Multihead_Attention = load("../vars/MultiHeadAttentionBlock_0.json")
+Multihead_Attention = load("MultiHeadAttentionBlock_0.json")
 
 h       = Multihead_Attention["h"]
 d_k     = Multihead_Attention["d_k"]

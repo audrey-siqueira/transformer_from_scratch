@@ -81,10 +81,11 @@ def train_model(config):
     
     #Training
     loss_fn = nn.CrossEntropyLoss(ignore_index=tokenizer_src.token_to_id('[PAD]'), label_smoothing=0.1).to(device)
+
+    #Iteration over epochs
     for epoch in range(initial_epoch, config['num_epochs']):
         
         torch.cuda.empty_cache()
-        
         model.train()
         batch_iterator = tqdm(train_dataloader, desc=f"Processing Epoch {epoch:02d}")
 
@@ -94,7 +95,7 @@ def train_model(config):
             is_last_epoch = (epoch == config['num_epochs'] - 1)
             is_last_batch = (batch_idx == len(train_dataloader) - 1)
 
-            
+            #Saving
             if is_last_epoch and is_last_batch:
                 #Activate save debug in every model layer
                 for name, module in model.named_modules():
@@ -102,38 +103,39 @@ def train_model(config):
                         module.save_debug = True
                         print(f'Ativado save_debug para: {name}')
 
-          
+
+            #Encoding
             encoder_input = batch['encoder_input'].to(device) # (b, seq_len)
             encoder_mask =  batch['encoder_mask'].to(device) # (B, 1, 1, seq_len)
-            decoder_input = batch['decoder_input'].to(device) # (B, seq_len)
-            decoder_mask =  batch['decoder_mask'].to(device) # (B, 1, seq_len, seq_len)
-
-            #Encoder
             encoder_output = model.encode(encoder_input, encoder_mask) # (B, seq_len, d_model)
 
-            #Decoder
+            
+            #Decoding
+            decoder_input = batch['decoder_input'].to(device) # (B, seq_len)
+            decoder_mask =  batch['decoder_mask'].to(device) # (B, 1, seq_len, seq_len)
             decoder_output = model.decode(encoder_output, 
                                           encoder_mask, 
                                           decoder_input, 
                                           decoder_mask) # (B, seq_len, d_model)
+
+            
 
             #Projection Layer
             proj_output    = model.project(decoder_output) # (B, seq_len, vocab_size)
 
             #Compare the output with the label
             label = batch['label'].to(device) # (B, seq_len)
+            
 
             # Compute the loss using a simple cross entropy
             loss = loss_fn(proj_output.view(-1, tokenizer_tgt.get_vocab_size()), label.view(-1))
             batch_iterator.set_postfix({"loss": f"{loss.item():6.3f}"})
-
             #Log the loss
             writer.add_scalar('train loss', loss.item(), global_step)
             writer.flush()
 
             # Backpropagate the loss
             loss.backward()
-
             # Update the weights
             optimizer.step()
             optimizer.zero_grad(set_to_none=True)
@@ -148,6 +150,7 @@ def train_model(config):
 
 
             global_step += 1
+            
             
 
         #Run validation at the end of every epoch

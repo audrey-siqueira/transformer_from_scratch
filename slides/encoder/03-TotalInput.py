@@ -1,7 +1,10 @@
 from manim import *
-from manim_functions import *
-from variables import *
 import math
+
+import sys
+sys.path.append("..") 
+from variables import *
+from manim_functions import *
 
 
 class generate(Scene):
@@ -14,7 +17,7 @@ class generate(Scene):
                 "label_y": {"string": "Tokens"                 , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
         group = build_matrix(self,dic)
-        group.to_edge(UP + LEFT, buff=0.5)
+        group.to_edge(UP + LEFT, buff=1.4)
         self.play(Write(group))
 
         #plus
@@ -46,7 +49,7 @@ class generate(Scene):
         self.play(Write(group))
 
         #arrow
-        arrow = MathTex(r"\longrightarrow", color=WHITE).scale(1).next_to(group, RIGHT, buff=0.3)
+        arrow = MathTex(r"\longrightarrow", color=WHITE).scale(1).next_to(group, RIGHT, buff=0.6)
         label = Text(f"Dropout = {dropout}").scale(0.2).set_color(WHITE).next_to(arrow, UP, buff=0.1)
         self.play(Write(arrow), Write(label))
 
@@ -58,7 +61,7 @@ class generate(Scene):
                 "label_y": {"string": "Tokens"                    , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
         group = build_matrix(self,dic)
-        group.next_to(arrow, RIGHT, buff=0.4)
+        group.next_to(arrow, RIGHT, buff=0.6)
         self.play(Write(group))
 
         self.wait(60)
