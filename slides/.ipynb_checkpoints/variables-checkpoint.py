@@ -68,27 +68,37 @@ h_value = Multihead_Attention["h_value"]
 
 QK                       = Multihead_Attention["QK"]
 attention_scores_partial = Multihead_Attention["attention_scores_partial"]
-attention_scores_masked = Multihead_Attention["attention_scores_masked"]
+attention_scores_masked  = Multihead_Attention["attention_scores_masked"]
 attention_scores         = Multihead_Attention["attention_scores"]
 attention_scores_dropout = Multihead_Attention["attention_scores_dropout"]
+
+AV = Multihead_Attention["attention_values"]
 
 AV_cont  = Multihead_Attention["AV_cont"]
 w_o      = Multihead_Attention["w_o_weight"]
 output   = Multihead_Attention["output"]
 
 
+#ENCODER RESIDUAL ADD 
+Residual_Multihead_Attention = load("ResidualConnection_0.json")
+output_dropout = Residual_Multihead_Attention["layer_output_dropout"]
+residual_output = Residual_Multihead_Attention["add"]
+
+
+
+#ENCODER NEURAL NETWORK NORMALIZATION
+Normalization_Neural_Network = load("LayerNormalization_1.json")
+eps_2        = Normalization_Multihead_Attention["eps"]
+alpha_2      = Normalization_Multihead_Attention["alpha"]
+bias_2       = Normalization_Multihead_Attention["bias"]
+mean_2       = Normalization_Multihead_Attention["mean"]
+std_2        = Normalization_Multihead_Attention["std"]
+normalized_2 = Normalization_Multihead_Attention["normalization"]
 
 
 
 
-
-'''
-layer_output          = vars["ResidualConnection_layer_output"]
-layer_output_dropout  = vars["ResidualConnection_layer_output_dropout"]
-add                   = vars["ResidualConnection_add"]
-
-
-
+"""
 nn_eps  = vars["LayerNormalization_eps_1"]
 nn_mean = vars["LayerNormalization_mean_1"]
 nn_std  = vars["LayerNormalization_std_1"]
@@ -104,6 +114,9 @@ nn_weights_2 = vars["FeedForwardBlock_linear_2_weight"]
 nn_bias_2 = vars["FeedForwardBlock_linear_2_bias"]
 nn_output = vars["FeedForwardBlock_result"]
 
+
+
 nn_output_dropout = vars["ResidualConnection_layer_output_dropout_1"]
 encoder_output = vars["ResidualConnection_add_1"]
-'''
+
+"""

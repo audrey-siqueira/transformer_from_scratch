@@ -1,7 +1,10 @@
 from manim import *
-from manim_functions import *
-from variables import *
 import math
+
+import sys
+sys.path.append("..") 
+from variables import *
+from manim_functions import *
 
 
 
