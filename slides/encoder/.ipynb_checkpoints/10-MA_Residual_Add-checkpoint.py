@@ -1,9 +1,9 @@
 from manim import *
 import math
+from variables import *
 
 import sys
 sys.path.append("..") 
-from variables import *
 from manim_functions import *
 
 class generate(Scene):
@@ -11,7 +11,7 @@ class generate(Scene):
         self.camera.background_color = BLACK
 
         #output_dropout
-        dic = { "matrix":  {"values": output_dropout[0]  , "scale": 0.3, "color": WHITE},
+        dic = { "matrix":  {"values": output_dropout_1[0]  , "scale": 0.3, "color": WHITE},
                 "title":   {"string": "\\text{Output}"         , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"   , "scale": 0.3, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                 , "scale": 0.3, "color": WHITE, "value": len(input_x)}
@@ -48,7 +48,7 @@ class generate(Scene):
 
 
         #add
-        dic = { "matrix":  {"values": residual_output[0]                     , "scale": 0.3, "color": WHITE},
+        dic = { "matrix":  {"values": residual_output_1[0]                     , "scale": 0.3, "color": WHITE},
                 "title":   {"string": "\\text{Neural Network Input}"         , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"                 , "scale": 0.3, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                               , "scale": 0.3, "color": WHITE, "value": len(input_x)}

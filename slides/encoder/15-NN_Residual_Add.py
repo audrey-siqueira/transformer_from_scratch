@@ -6,15 +6,16 @@ import sys
 sys.path.append("..") 
 from manim_functions import *
 
+
 class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
-        #output_dropout
-        dic = { "matrix":  {"values": output_dropout_1[0]  , "scale": 0.3, "color": WHITE},
-                "title":   {"string": "\\text{Output}"         , "scale": 0.3, "color": WHITE},
-                "label_x": {"string": "Embedding Dimensions"   , "scale": 0.3, "color": WHITE, "value": d_model},
-                "label_y": {"string": "Tokens"                 , "scale": 0.3, "color": WHITE, "value": len(input_x)}
+        #nn output dropout
+        dic = { "matrix":  {"values": output_dropout_2[0]            , "scale": 0.3, "color": WHITE},
+                "title":   {"string": "\\text{Neural Network Output}" , "scale": 0.3, "color": WHITE},
+                "label_x": {"string": "Embedding Dimensions"          , "scale": 0.3, "color": WHITE, "value": d_model},
+                "label_y": {"string": "Tokens"                        , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
         group_1 = build_matrix(self,dic,f=True)
         group_1.to_edge(LEFT*3 + UP*6, buff=0.4)
@@ -31,11 +32,11 @@ class generate(Scene):
         self.play(Write(plus))
 
 
-        #total input dropout
-        dic = { "matrix":  {"values": input_total_dropout[0]        , "scale": 0.3, "color": WHITE},
-                "title":   {"string": "\\text{Total Input Dropout}"         , "scale": 0.3, "color": WHITE},
-                "label_x": {"string": "Embedding Dimensions"        , "scale": 0.3, "color": WHITE, "value": d_model},
-                "label_y": {"string": "Tokens"                      , "scale": 0.3, "color": WHITE, "value": len(input_x)}
+        #nn input dropout
+        dic = { "matrix":  {"values": residual_output_1[0]               , "scale": 0.3, "color": WHITE},
+                "title":   {"string": "\\text{Neural Network Input}"     , "scale": 0.3, "color": WHITE},
+                "label_x": {"string": "Embedding Dimensions"             , "scale": 0.3, "color": WHITE, "value": d_model},
+                "label_y": {"string": "Tokens"                           ,  "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
         group_2 = build_matrix(self,dic,f=True)
         group_2.next_to(plus, RIGHT, buff=0.5).align_to(group_1, DOWN) 
@@ -47,9 +48,9 @@ class generate(Scene):
         self.play(Write(equal))
 
 
-        #add
-        dic = { "matrix":  {"values": residual_output_1[0]                     , "scale": 0.3, "color": WHITE},
-                "title":   {"string": "\\text{Neural Network Input}"         , "scale": 0.3, "color": WHITE},
+        #encoder output
+        dic = { "matrix":  {"values": residual_output_2[0]                      , "scale": 0.3, "color": WHITE},
+                "title":   {"string": "\\text{Encoder Output}"               , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"                 , "scale": 0.3, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                               , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
@@ -58,3 +59,4 @@ class generate(Scene):
         self.play(Write(group_3))
 
         self.wait(60)
+

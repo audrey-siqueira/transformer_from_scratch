@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 
-SLIDES_DIR = Path(__file__).resolve().parent      # .../slides
+SLIDES_DIR = Path(__file__).resolve().parent.parent      # .../slides
 VARS_DIR   = SLIDES_DIR / "vars"                  # .../slides/vars
 
 def load(name: str):
@@ -81,42 +81,44 @@ output   = Multihead_Attention["output"]
 
 #ENCODER RESIDUAL ADD 
 Residual_Multihead_Attention = load("ResidualConnection_0.json")
-output_dropout = Residual_Multihead_Attention["layer_output_dropout"]
-residual_output = Residual_Multihead_Attention["add"]
+dropout_p_1 = Residual_Multihead_Attention["dropout_p"]
+input_x_1   = Residual_Multihead_Attention["input_x"]
+norm_x_1    = Residual_Multihead_Attention["norm_x"]
+output_1    = Residual_Multihead_Attention["layer_output"]
+output_dropout_1  = Residual_Multihead_Attention["layer_output_dropout"]
+residual_output_1 = Residual_Multihead_Attention["add"]
 
 
 
 #ENCODER NEURAL NETWORK NORMALIZATION
 Normalization_Neural_Network = load("LayerNormalization_1.json")
-eps_2        = Normalization_Multihead_Attention["eps"]
-alpha_2      = Normalization_Multihead_Attention["alpha"]
-bias_2       = Normalization_Multihead_Attention["bias"]
-mean_2       = Normalization_Multihead_Attention["mean"]
-std_2        = Normalization_Multihead_Attention["std"]
-normalized_2 = Normalization_Multihead_Attention["normalization"]
+eps_2        = Normalization_Neural_Network["eps"]
+alpha_2      = Normalization_Neural_Network["alpha"]
+bias_2       = Normalization_Neural_Network["bias"]
+mean_2       = Normalization_Neural_Network["mean"]
+std_2        = Normalization_Neural_Network["std"]
+normalized_2 = Normalization_Neural_Network["normalization"]
+
+
+#ENCODER NEURAL NETWORK 
+Neural_Network = load("FeedForwardBlock_0.json")
+nn_weights_1 = Neural_Network["linear_1_weight"]
+nn_bias_1 = Neural_Network["linear_1_bias"]
+nn_first_out = Neural_Network["first_out"]
+nn_first_activation = Neural_Network["first_activation"]
+nn_first_dropout = Neural_Network["first_dropout"]
+nn_weights_2 = Neural_Network["linear_2_weight"]
+nn_bias_2 = Neural_Network["linear_2_bias"]
+nn_output = Neural_Network["result"]
 
 
 
+#ENCODER NEURAL NETWORK  RESIDUAL ADD 
+Residual_Neural_Network = load("ResidualConnection_1.json")
+dropout_p_2 = Residual_Neural_Network["dropout_p"]
+input_x_2   = Residual_Neural_Network["input_x"]
+norm_x_2    = Residual_Neural_Network["norm_x"]
+output_2    = Residual_Neural_Network["layer_output"]
+output_dropout_2  = Residual_Neural_Network["layer_output_dropout"]
+residual_output_2 = Residual_Neural_Network["add"]
 
-"""
-nn_eps  = vars["LayerNormalization_eps_1"]
-nn_mean = vars["LayerNormalization_mean_1"]
-nn_std  = vars["LayerNormalization_std_1"]
-nn_normalized =vars["LayerNormalization_normalization_1"]
-
-
-nn_weights_1 = vars["FeedForwardBlock_linear_1_weight"]
-nn_bias_1 = vars["FeedForwardBlock_linear_1_bias"]
-nn_first_out = vars["FeedForwardBlock_first_out"]
-nn_first_activation = vars["FeedForwardBlock_first_activation"]
-nn_first_dropout = vars["FeedForwardBlock_first_dropout"]
-nn_weights_2 = vars["FeedForwardBlock_linear_2_weight"]
-nn_bias_2 = vars["FeedForwardBlock_linear_2_bias"]
-nn_output = vars["FeedForwardBlock_result"]
-
-
-
-nn_output_dropout = vars["ResidualConnection_layer_output_dropout_1"]
-encoder_output = vars["ResidualConnection_add_1"]
-
-"""

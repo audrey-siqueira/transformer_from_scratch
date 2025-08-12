@@ -1,9 +1,9 @@
 from manim import *
 import math
+from variables import *
 
 import sys
 sys.path.append("..") 
-from variables import *
 from manim_functions import *
 
 
