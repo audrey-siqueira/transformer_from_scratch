@@ -122,3 +122,13 @@ output_2    = Residual_Neural_Network["layer_output"]
 output_dropout_2  = Residual_Neural_Network["layer_output_dropout"]
 residual_output_2 = Residual_Neural_Network["add"]
 
+
+#ENCODER OUTPUT NORMALIZATION
+Normalization_Encoder = load("LayerNormalization_2.json")
+eps_3        = Normalization_Encoder["eps"]
+alpha_3      = Normalization_Encoder["alpha"]
+bias_3       = Normalization_Encoder["bias"]
+mean_3       = Normalization_Encoder["mean"]
+std_3        = Normalization_Encoder["std"]
+normalized_3 = Normalization_Encoder["normalization"]
+

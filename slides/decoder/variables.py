@@ -12,8 +12,8 @@ def load(name: str):
 
 
 
-#ENCODER INPUT EMBEDDING
-InputEmbedding = load("InputEmbedding_0.json")
+#DECODER INPUT EMBEDDING
+InputEmbedding = load("InputEmbedding_1.json")
 d_model          = InputEmbedding["d_model"]
 vocab_size       = InputEmbedding["vocab_size"]
 embedding_map    = InputEmbedding["embedding_weight"]
@@ -22,8 +22,8 @@ input_x_embedded = InputEmbedding["embedded"][0]
 input_x_embedded_scaled   = InputEmbedding["scaled"][0]
 
 
-#ENCODER POSITIONAL ENCODING
-PositionalEncoding = load("PositionalEncoding_0.json")
+#DECODER POSITIONAL ENCODING
+PositionalEncoding = load("PositionalEncoding_1.json")
 seq_len               = PositionalEncoding["seq_len"]
 dropout               = PositionalEncoding["dropout"]
 position              = PositionalEncoding["position"]  
@@ -33,8 +33,11 @@ input_x_posenc        = PositionalEncoding["trim"]
 input_total           = PositionalEncoding["sum"]
 input_total_dropout   = PositionalEncoding["sum_dropout"]
 
-#ENCODER MULTIHEAD ATTENTION NORMALIZATION
-Normalization_Multihead_Attention = load("LayerNormalization_0.json")
+
+
+
+#DECODER MULTIHEAD ATTENTION NORMALIZATION
+Normalization_Multihead_Attention = load("LayerNormalization_3.json")
 eps_1        = Normalization_Multihead_Attention["eps"]
 alpha_1      = Normalization_Multihead_Attention["alpha"]
 bias_1       = Normalization_Multihead_Attention["bias"]
@@ -44,8 +47,10 @@ normalized_1 = Normalization_Multihead_Attention["normalization"]
 
 
 
-#ENCODER MULTIHEAD ATTENTION 
-Multihead_Attention = load("MultiHeadAttentionBlock_0.json")
+#DECODER MULTIHEAD ATTENTION 
+Multihead_Attention = load("MultiHeadAttentionBlock_1.json")
+
+mask    = Multihead_Attention["mask"]
 
 h       = Multihead_Attention["h"]
 d_k     = Multihead_Attention["d_k"]
@@ -66,11 +71,12 @@ w_v     = Multihead_Attention["w_v_weight"]
 value   = Multihead_Attention["value"]
 h_value = Multihead_Attention["h_value"]      
 
-QK                       = Multihead_Attention["QK"]
-attention_scores_partial = Multihead_Attention["attention_scores_partial"]
-attention_scores_masked  = Multihead_Attention["attention_scores_masked"]
-attention_scores         = Multihead_Attention["attention_scores"]
-attention_scores_dropout = Multihead_Attention["attention_scores_dropout"]
+QK                                 = Multihead_Attention["QK"]
+attention_scores_partial_original  = Multihead_Attention["attention_scores_partial_original"]
+attention_scores_partial           = Multihead_Attention["attention_scores_partial"]
+attention_scores_masked            = Multihead_Attention["attention_scores_masked"]
+attention_scores                   = Multihead_Attention["attention_scores"]
+attention_scores_dropout           = Multihead_Attention["attention_scores_dropout"]
 
 AV = Multihead_Attention["attention_values"]
 
@@ -79,17 +85,17 @@ w_o      = Multihead_Attention["w_o_weight"]
 output   = Multihead_Attention["output"]
 
 
-#ENCODER RESIDUAL ADD 
-Residual_Multihead_Attention = load("ResidualConnection_0.json")
-dropout_p_1 = Residual_Multihead_Attention["dropout_p"]
-input_x_1   = Residual_Multihead_Attention["input_x"]
-norm_x_1    = Residual_Multihead_Attention["norm_x"]
-output_1    = Residual_Multihead_Attention["layer_output"]
+#DECODER RESIDUAL ADD 
+Residual_Multihead_Attention = load("ResidualConnection_2.json")
+dropout_p_1       = Residual_Multihead_Attention["dropout_p"]
+input_x_1         = Residual_Multihead_Attention["input_x"]
+norm_x_1          = Residual_Multihead_Attention["norm_x"]
+output_1          = Residual_Multihead_Attention["layer_output"]
 output_dropout_1  = Residual_Multihead_Attention["layer_output_dropout"]
 residual_output_1 = Residual_Multihead_Attention["add"]
 
 
-
+"""
 #ENCODER NEURAL NETWORK NORMALIZATION
 Normalization_Neural_Network = load("LayerNormalization_1.json")
 eps_2        = Normalization_Neural_Network["eps"]
@@ -122,13 +128,4 @@ output_2    = Residual_Neural_Network["layer_output"]
 output_dropout_2  = Residual_Neural_Network["layer_output_dropout"]
 residual_output_2 = Residual_Neural_Network["add"]
 
-
-#ENCODER OUTPUT NORMALIZATION
-Normalization_Encoder = load("LayerNormalization_2.json")
-eps_3        = Normalization_Encoder["eps"]
-alpha_3      = Normalization_Encoder["alpha"]
-bias_3       = Normalization_Encoder["bias"]
-mean_3       = Normalization_Encoder["mean"]
-std_3        = Normalization_Encoder["std"]
-normalized_3 = Normalization_Encoder["normalization"]
-
+"""

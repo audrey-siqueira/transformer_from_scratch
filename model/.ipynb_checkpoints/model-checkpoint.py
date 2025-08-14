@@ -137,6 +137,9 @@ class MultiHeadAttentionBlock(nn.Module):
         root = math.sqrt(d_k)
         attention_scores_partial = (QK) /root
 
+        #####
+        attention_scores_partial_original = attention_scores_partial.clone()
+
         if mask is not None:
             # Write a very low value (indicating -inf) to the positions where mask == 0
             attention_scores_masked = attention_scores_partial.masked_fill_(mask == 0, -1e9)
@@ -154,7 +157,7 @@ class MultiHeadAttentionBlock(nn.Module):
 
 
         
-        return AV, attention_scores,  QK, attention_scores_partial, attention_scores_masked, attention_scores_dropout 
+        return AV, attention_scores,  QK, attention_scores_partial_original, attention_scores_partial, attention_scores_masked, attention_scores_dropout 
     
 
         
@@ -172,7 +175,7 @@ class MultiHeadAttentionBlock(nn.Module):
 
 
         # Calculate attention
-        AV, self.attention_scores,       QK, attention_scores_partial, attention_scores_masked, attention_scores_dropout = MultiHeadAttentionBlock.attention(h_query, h_key, h_value, mask, self.dropout)
+        AV, self.attention_scores,QK,attention_scores_partial_original, attention_scores_partial, attention_scores_masked, attention_scores_dropout = MultiHeadAttentionBlock.attention(h_query, h_key, h_value, mask, self.dropout)
         #AV, self.attention_scores = MultiHeadAttentionBlock.attention(h_query, h_key, h_value, mask, self.dropout)
 
         # Combine all the heads together
@@ -190,6 +193,7 @@ class MultiHeadAttentionBlock(nn.Module):
                 "h": self.h,
                 "d_k": self.d_k,
                 "dropout": self.dropout.p,
+                "mask": mask.detach().cpu().tolist(),
                 "q"         : q.detach().cpu().tolist(),
                 "k"         : k.detach().cpu().tolist(),
                 "v"         : v.detach().cpu().tolist(),
@@ -204,10 +208,11 @@ class MultiHeadAttentionBlock(nn.Module):
                 "h_key": h_key.detach().cpu().tolist(),
                 "h_value": h_value.detach().cpu().tolist(),
 
-                "QK"                      : QK.detach().cpu().tolist(),
-                "attention_scores_partial": attention_scores_partial.detach().cpu().tolist(),
-                "attention_scores_masked" : attention_scores_masked.detach().cpu().tolist(),
-                "attention_scores_dropout": attention_scores_dropout.detach().cpu().tolist(),
+                "QK"                               : QK.detach().cpu().tolist(),
+                "attention_scores_partial_original": attention_scores_partial_original.detach().cpu().tolist(),
+                "attention_scores_partial"         : attention_scores_partial.detach().cpu().tolist(),
+                "attention_scores_masked"          : attention_scores_masked.detach().cpu().tolist(),
+                "attention_scores_dropout"         : attention_scores_dropout.detach().cpu().tolist(),
 
                 
                 "attention_scores": self.attention_scores.detach().cpu().tolist(),
@@ -233,14 +238,13 @@ class FeedForwardBlock(nn.Module):
         self.linear_1 = nn.Linear(d_model, d_ff) # w1 and b1
         self.dropout = nn.Dropout(dropout)
         self.linear_2 = nn.Linear(d_ff, d_model) # w2 and b2
-
-        self.save_debug = False
-        self.debug_data = {}
         self.d_model=d_model
         self.d_ff= d_ff
         self.dropout_rate= dropout
 
-       
+        self.save_debug = False
+        self.debug_data = {}
+     
 
     def forward(self, x):
         # (batch, seq_len, d_model) --> (batch, seq_len, d_ff) --> (batch, seq_len, d_model)

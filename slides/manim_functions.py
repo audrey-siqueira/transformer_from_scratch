@@ -2,7 +2,14 @@ from manim import *
 
 
 def build_matrix(self, dic, f=False):
-    formatted_matrix = [[f"{num:.4f}" if isinstance(num, (float, int)) else num for num in row] for row in dic["matrix"]["values"]]
+    #formatted_matrix = [[f"{num:.4f}" if isinstance(num, (float, int)) else num for num in row] for row in dic["matrix"]["values"]]
+
+    formatted_matrix = [
+    [float(str(num)[:7]) if isinstance(num, (float, int)) and num < 0
+     else float(str(num)[:6]) if isinstance(num, (float, int))
+     else num
+     for num in row]
+    for row in dic["matrix"]["values"]]
 
     matrix = Matrix(formatted_matrix,h_buff=2,v_buff=1.5,).scale(dic["matrix"]["scale"]).set_color(dic["matrix"]["color"])
     if f:
@@ -111,7 +118,7 @@ def nn_calculation(self, equal, group_1, COLOR_1, group_2, COLOR_2, group_3,COLO
 
 
 
-def softmax(self, equal, group_1):
+def softmax(self, equal, group_1, space):
     target = equal.get_center()
 
     for r, row_mobj in enumerate(group_1[0].get_rows()):
@@ -123,15 +130,15 @@ def softmax(self, equal, group_1):
 
         for i, val in enumerate(row_vals):
             # e^{x_i}
-            numerator = MathTex(rf"e^{{{val:.2f}}}", color=WHITE).scale(0.3)
+            numerator = MathTex(rf"e^{{{val}}}", color=WHITE).scale(0.3)
 
             # denominador e^{x1} + e^{x2} + ...
-            denom_str = "+".join([f"e^{{{x:.4f}}}" for x in row_vals])
+            denom_str = "+".join([f"e^{{{x}}}" for x in row_vals])
             denominator = MathTex(rf"{denom_str}", color=WHITE).scale(0.3)
 
             # Fração
-            frac = MathTex(rf"\frac{{e^{{{val:.4f}}}}}{{{denom_str}}}", color=WHITE).scale(0.35)
-            frac.move_to(target + RIGHT*1.4)
+            frac = MathTex(rf"\frac{{e^{{{val}}}}}{{{denom_str}}}", color=WHITE).scale(0.35)
+            frac.move_to(target + RIGHT*space)
 
             # Resultado numérico
             result = MathTex(f"= {soft[i]:.4f}", color=WHITE).scale(0.3)

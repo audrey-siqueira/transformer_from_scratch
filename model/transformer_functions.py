@@ -16,7 +16,13 @@ def save_to_json(debug_data, base_name="DebugOutput", dir_path="slides/vars"):
     # Salva o JSON
     with open(filename, "w") as f:
         json.dump(debug_data, f, indent=2)
+
+        f.flush()
+        os.fsync(f.fileno())
     print(f"Debug info saved to {filename}")
+
+
+
 
 
 
