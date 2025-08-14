@@ -85,7 +85,7 @@ w_o      = Multihead_Attention["w_o_weight"]
 output   = Multihead_Attention["output"]
 
 
-#DECODER RESIDUAL ADD 
+#DECODER MULTIHEAD ATTENTION  RESIDUAL ADD 
 Residual_Multihead_Attention = load("ResidualConnection_2.json")
 dropout_p_1       = Residual_Multihead_Attention["dropout_p"]
 input_x_1         = Residual_Multihead_Attention["input_x"]
@@ -93,6 +93,80 @@ norm_x_1          = Residual_Multihead_Attention["norm_x"]
 output_1          = Residual_Multihead_Attention["layer_output"]
 output_dropout_1  = Residual_Multihead_Attention["layer_output_dropout"]
 residual_output_1 = Residual_Multihead_Attention["add"]
+
+
+#DECODER CROSS NORMALIZATION
+Normalization_Neural_Network = load("LayerNormalization_4.json")
+eps_2        = Normalization_Neural_Network["eps"]
+alpha_2      = Normalization_Neural_Network["alpha"]
+bias_2       = Normalization_Neural_Network["bias"]
+mean_2       = Normalization_Neural_Network["mean"]
+std_2        = Normalization_Neural_Network["std"]
+normalized_2 = Normalization_Neural_Network["normalization"]
+
+
+
+#DECODER CROSS
+Cross_Attention = load("MultiHeadAttentionBlock_2.json")
+
+cross_mask    = Cross_Attention["mask"]
+
+cross_h       = Cross_Attention["h"]
+cross_d_k     = Cross_Attention["d_k"]
+
+cross_q       = Cross_Attention["q"]
+cross_w_q     = Cross_Attention["w_q_weight"]
+cross_query   = Cross_Attention["query"]
+cross_h_query = Cross_Attention["h_query"]
+
+cross_k       = Cross_Attention["k"]
+cross_w_k     = Cross_Attention["w_k_weight"]
+cross_key     = Cross_Attention["key"]
+cross_h_key   = Cross_Attention["h_key"]
+
+
+cross_v       = Cross_Attention["v"]
+cross_w_v     = Cross_Attention["w_v_weight"]
+cross_value   = Cross_Attention["value"]
+cross_h_value = Cross_Attention["h_value"]      
+
+cross_QK                                 = Cross_Attention["QK"]
+cross_attention_scores_partial_original  = Cross_Attention["attention_scores_partial_original"]
+cross_attention_scores_partial           = Cross_Attention["attention_scores_partial"]
+cross_attention_scores_masked            = Cross_Attention["attention_scores_masked"]
+cross_attention_scores                   = Cross_Attention["attention_scores"]
+cross_attention_scores_dropout           = Cross_Attention["attention_scores_dropout"]
+
+cross_AV = Cross_Attention["attention_values"]
+
+cross_AV_cont  = Cross_Attention["AV_cont"]
+cross_w_o      = Cross_Attention["w_o_weight"]
+cross_output   = Cross_Attention["output"]
+
+
+
+#DECODER MULTIHEAD ATTENTION  RESIDUAL ADD 
+Residual_Multihead_Attention = load("ResidualConnection_3.json")
+dropout_p_2       = Residual_Multihead_Attention["dropout_p"]
+input_x_2         = Residual_Multihead_Attention["input_x"]
+norm_x_2          = Residual_Multihead_Attention["norm_x"]
+output_2          = Residual_Multihead_Attention["layer_output"]
+output_dropout_2  = Residual_Multihead_Attention["layer_output_dropout"]
+residual_output_2 = Residual_Multihead_Attention["add"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 """
