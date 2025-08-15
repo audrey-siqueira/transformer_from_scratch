@@ -156,32 +156,18 @@ residual_output_2 = Residual_Multihead_Attention["add"]
 
 
 
+#DECODER NEURAL NETWORK NORMALIZATION
+Normalization_Neural_Network = load("LayerNormalization_5.json")
+eps_3        = Normalization_Neural_Network["eps"]
+alpha_3      = Normalization_Neural_Network["alpha"]
+bias_3       = Normalization_Neural_Network["bias"]
+mean_3       = Normalization_Neural_Network["mean"]
+std_3        = Normalization_Neural_Network["std"]
+normalized_3 = Normalization_Neural_Network["normalization"]
 
 
-
-
-
-
-
-
-
-
-
-
-
-"""
-#ENCODER NEURAL NETWORK NORMALIZATION
-Normalization_Neural_Network = load("LayerNormalization_1.json")
-eps_2        = Normalization_Neural_Network["eps"]
-alpha_2      = Normalization_Neural_Network["alpha"]
-bias_2       = Normalization_Neural_Network["bias"]
-mean_2       = Normalization_Neural_Network["mean"]
-std_2        = Normalization_Neural_Network["std"]
-normalized_2 = Normalization_Neural_Network["normalization"]
-
-
-#ENCODER NEURAL NETWORK 
-Neural_Network = load("FeedForwardBlock_0.json")
+#DECODER NEURAL NETWORK 
+Neural_Network = load("FeedForwardBlock_1.json")
 nn_weights_1 = Neural_Network["linear_1_weight"]
 nn_bias_1 = Neural_Network["linear_1_bias"]
 nn_first_out = Neural_Network["first_out"]
@@ -193,13 +179,21 @@ nn_output = Neural_Network["result"]
 
 
 
-#ENCODER NEURAL NETWORK  RESIDUAL ADD 
-Residual_Neural_Network = load("ResidualConnection_1.json")
-dropout_p_2 = Residual_Neural_Network["dropout_p"]
-input_x_2   = Residual_Neural_Network["input_x"]
-norm_x_2    = Residual_Neural_Network["norm_x"]
-output_2    = Residual_Neural_Network["layer_output"]
-output_dropout_2  = Residual_Neural_Network["layer_output_dropout"]
-residual_output_2 = Residual_Neural_Network["add"]
+#DECODER NEURAL NETWORK  RESIDUAL ADD 
+Residual_Neural_Network = load("ResidualConnection_4.json")
+dropout_p_3 = Residual_Neural_Network["dropout_p"]
+input_x_3   = Residual_Neural_Network["input_x"]
+norm_x_3    = Residual_Neural_Network["norm_x"]
+output_3    = Residual_Neural_Network["layer_output"]
+output_dropout_3  = Residual_Neural_Network["layer_output_dropout"]
+residual_output_3 = Residual_Neural_Network["add"]
 
-"""
+#DECODER OUTPUT NORMALIZATION
+Normalization_Neural_Network = load("LayerNormalization_6.json")
+eps_4        = Normalization_Neural_Network["eps"]
+alpha_4      = Normalization_Neural_Network["alpha"]
+bias_4       = Normalization_Neural_Network["bias"]
+mean_4       = Normalization_Neural_Network["mean"]
+std_4        = Normalization_Neural_Network["std"]
+normalized_4 = Normalization_Neural_Network["normalization"]
+
