@@ -147,3 +147,25 @@ def softmax(self, equal, group_1, space):
             group = VGroup(frac, result)
             self.play(Write(group))
             self.play(FadeOut(group, run_time=3))
+
+
+
+def ellipsis_rows(rows, head=3, tail=3, dots=2, symbol=r"\cdots"):
+    n = len(rows)
+    if n <= head + tail:
+        return rows
+    ell = [symbol] * len(rows[0])  # cada célula vira \cdots
+    return rows[:head] + [ell]*dots + rows[-tail:]
+
+
+
+
+def ellipsis_cols(mat, left=3, right=3, dots=2, symbol=r"\vdots"):
+    if not mat:
+        return mat
+    n_cols = len(mat[0])
+    if n_cols <= left + right:
+        return mat
+    
+    return [row[:left] + [symbol]*dots + row[-right:] for row in mat]
+

@@ -197,3 +197,12 @@ mean_4       = Normalization_Neural_Network["mean"]
 std_4        = Normalization_Neural_Network["std"]
 normalized_4 = Normalization_Neural_Network["normalization"]
 
+
+#DECODER PORJECTION LAYER
+Projection_Layer = load("ProjectionLayer_0.json")
+proj_vocab_size = Projection_Layer["vocab_size"]
+proj_weights = Projection_Layer["weight"]
+proj_bias = Projection_Layer["bias"]
+proj_input = Projection_Layer["input_x"]
+proj_output = Projection_Layer["output"]
+
