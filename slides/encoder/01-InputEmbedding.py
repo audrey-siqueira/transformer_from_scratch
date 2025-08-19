@@ -11,13 +11,27 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+
+        title = MathTex(r"\text{Embedding}", color=WHITE).scale(0.5).to_edge(UP*0.3)
+        self.play(Write(title))
+
+        #Input words
+        formatted_vector = r",\;".join(map(str, words))  
+        vector = MathTex(r"\left[", formatted_vector, r"\right]").scale(0.35).set_color(WHITE).to_edge(LEFT+UP*3.5, buff=0.5)
+        label_vector = Tex("Input Words", color=WHITE).scale(0.35).next_to(vector, UP)
+        self.play(Write(vector), Write(label_vector))
+
+        #arrow
+        arrow = MathTex(r"\downarrow", color=WHITE).scale(1.5).next_to(vector, DOWN, buff=0.4).shift(LEFT * 0.4)
+        label = Text(f"English Tokenizer").scale(0.2).set_color(WHITE).next_to(arrow, RIGHT, buff=0.1)
+        self.play(Write(arrow), Write(label))
+        
+
         #Input Tokens
         formatted_vector = r",\;".join(map(str, input_x))  
         vector = MathTex(r"\left[", formatted_vector, r"\right]").scale(0.5).set_color(WHITE).to_edge(LEFT, buff=0.5)
         label_vector = Tex("Input Tokens", color=WHITE).scale(0.35).next_to(vector, UP)
         self.play(Write(vector), Write(label_vector))
-
-
 
         #arrow
         arrow = MathTex(r"\longrightarrow", color=WHITE).scale(1).next_to(vector, RIGHT, buff=0.7)
@@ -37,7 +51,7 @@ class generate(Scene):
         dic = { "matrix":  {"values": matrix_lines          , "scale": 0.35, "color": PURE_GREEN},
                 "title":   {"string": "Embedding Map"       , "scale": 0.35, "color": PURE_GREEN},
                 "label_x": {"string": "Embedding Dimensions", "scale": 0.35, "color": PURE_GREEN, "value": d_model },
-                "label_y": {"string": "Tokenizer Size"      , "scale": 0.35, "color": PURE_GREEN, "value": vocab_size}
+                "label_y": {"string": "English Tokenizer Size"      , "scale": 0.35, "color": PURE_GREEN, "value": vocab_size}
               }
         group = build_matrix(self,dic)
         

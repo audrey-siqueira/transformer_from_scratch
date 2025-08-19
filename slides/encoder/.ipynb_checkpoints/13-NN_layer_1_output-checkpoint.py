@@ -10,6 +10,9 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Feed Forward:}", color=WHITE).scale(0.5).to_edge(LEFT+UP)
+        self.play(Write(title))
+
         #first out
         dic = { "matrix":  {"values": nn_first_out[0]                 , "scale": 0.3, "color": WHITE},
                 "title":   {"string": "\\text{First Layer Output}"    , "scale": 0.3, "color": WHITE},

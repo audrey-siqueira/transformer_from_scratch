@@ -1,6 +1,7 @@
 from pathlib import Path
 import json
 
+
 SLIDES_DIR = Path(__file__).resolve().parent.parent      # .../slides
 VARS_DIR   = SLIDES_DIR / "vars"                  # .../slides/vars
 
@@ -20,6 +21,12 @@ embedding_map    = InputEmbedding["embedding_weight"]
 input_x          = InputEmbedding["input_x"][0]
 input_x_embedded = InputEmbedding["embedded"][0]
 input_x_embedded_scaled   = InputEmbedding["scaled"][0]
+
+
+from tokenizers import Tokenizer
+path = "/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/transformer/tokenizers/tokenizer_pt.json"
+tokenizer_src = Tokenizer.from_file(str(path))
+words = tokenizer_src.decode([int(i) for i in input_x], skip_special_tokens=False)
 
 
 #DECODER POSITIONAL ENCODING

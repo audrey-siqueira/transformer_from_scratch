@@ -12,15 +12,18 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Multi-Head Attention}", color=WHITE).scale(0.5).to_edge(UP*0.001)
+        self.play(Write(title))
+
         formula = MathTex(
                               r"\text{Attention} = \text{softmax}\left(",
                               r"\frac{Q.K^\top}{\sqrt{d_k}}",
                               r"\right).V",
                               color=WHITE
-                          ).scale(0.5).to_edge(UP + LEFT)
+                          ).scale(0.4).to_edge(UP*1.5 + LEFT)
 
         explanation = MathTex(r"\text{where:}  \quad   d_k = 2",
-                              color=WHITE).scale(0.6).next_to(formula, RIGHT, buff= 7)
+                              color=WHITE).scale(0.5).next_to(formula, RIGHT, buff= 7)
 
         self.play(Write(formula))
         self.play(Write(explanation))
@@ -102,7 +105,7 @@ class generate(Scene):
             label = MathTex(r"Softmax", color=WHITE).scale(0.3).next_to(arrow, UP, buff=0.1)
             self.play(Write(arrow), Write(label))
 
-            softmax(self, arrow, group_4)
+            softmax(self, arrow, group_4, 1.4)
 
             #Softmax
             dic = { "matrix":  {"values": arg_5                                                                                       , "scale": 0.3, "color": WHITE},
@@ -119,7 +122,7 @@ class generate(Scene):
 
 
 
-        split(position   = LEFT*0.2 + UP*6,
+        split(position   = LEFT*0.2 + UP*7,
               p          = 1,
               arg_1      = h_query[0][0],
               color_1    = BLUE_C,
@@ -130,7 +133,7 @@ class generate(Scene):
               arg_5      = attention_scores[0][0])
         
 
-        split(position   = LEFT*0.2 + DOWN*5,
+        split(position   = LEFT*0.2 + DOWN*4,
               p          = 2,
               arg_1      = h_query[0][1],
               color_1    = BLUE_C,

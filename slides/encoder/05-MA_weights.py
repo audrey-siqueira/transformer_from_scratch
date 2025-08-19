@@ -11,6 +11,10 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        
+        title = MathTex(r"\text{Multi-Head Attention}", color=WHITE).scale(0.4).to_edge(UP*0.001)
+        self.play(Write(title))
+
         def mult_matrix(position,string_1,arg_1,string_2,arg_2,string_3,arg_3,color):
 
               #formula
@@ -84,7 +88,7 @@ class generate(Scene):
 
 
 
-        mult_matrix(position   = LEFT*0.5 + UP*2.3 ,
+        mult_matrix(position   = LEFT*0.5 + UP*3.1 ,
                     string_1   = "q",
                     arg_1      = q,
                     string_2   = "Q",
@@ -94,7 +98,7 @@ class generate(Scene):
                     color      = BLUE_C)
 
 
-        mult_matrix(position   = LEFT*0.5 ,
+        mult_matrix(position   = LEFT*0.5 + UP*8.5 ,
                     string_1   = "k",
                     arg_1      = k,
                     string_2   = "K",
@@ -104,7 +108,7 @@ class generate(Scene):
                     color      = PURE_RED)
 
 
-        mult_matrix(position   = LEFT*0.5 + DOWN*2.3,
+        mult_matrix(position   = LEFT*0.5 + DOWN*1.7,
                     string_1   = "v",
                     arg_1      = v,
                     string_2   = "V",
@@ -115,3 +119,5 @@ class generate(Scene):
 
 
         self.wait(60)
+
+        

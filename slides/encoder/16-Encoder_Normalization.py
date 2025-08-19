@@ -24,7 +24,7 @@ class generate(Scene):
 
         #tEncoder Output
         dic = { "matrix":  {"values": residual_output_2[0]      ,"scale": 0.35, "color": WHITE},
-                "title":   {"string": "\\text{Encoder Output}"  , "scale": 0.35, "color": WHITE},
+                "title":   {"string": "\\text{Memory}"  , "scale": 0.35, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"    , "scale": 0.35, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                  , "scale": 0.35, "color": WHITE, "value": len(input_x)}
               }
@@ -129,7 +129,7 @@ class generate(Scene):
 
         #final input
         dic = { "matrix":  {"values": normalized_3[0]                      ,"scale": 0.35, "color": WHITE},
-                "title":   {"string": "\\text{Normalized Encoder Output}"     , "scale": 0.35, "color": WHITE},
+                "title":   {"string": "\\text{Memory}"                     , "scale": 0.35, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"               , "scale": 0.35, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                             , "scale": 0.35, "color": WHITE, "value": len(input_x)}
               }

@@ -22,6 +22,12 @@ input_x_embedded = InputEmbedding["embedded"][0]
 input_x_embedded_scaled   = InputEmbedding["scaled"][0]
 
 
+from tokenizers import Tokenizer
+path = "/mnt/custom-file-systems/efs/fs-0a0b857e0cd732c6d_fsap-0c621f83c851d0d4c/transformer/tokenizers/tokenizer_en.json"
+tokenizer_src = Tokenizer.from_file(str(path))
+words = tokenizer_src.decode([int(i) for i in input_x], skip_special_tokens=False).split()
+
+
 #ENCODER POSITIONAL ENCODING
 PositionalEncoding = load("PositionalEncoding_0.json")
 seq_len               = PositionalEncoding["seq_len"]

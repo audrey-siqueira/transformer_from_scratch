@@ -11,6 +11,10 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Embedding + Positional Encoding}", color=WHITE).scale(0.5).to_edge(UP*0.3)
+        self.play(Write(title))
+
+
         dic = { "matrix":  {"values": input_x_embedded_scaled  , "scale": 0.3, "color": WHITE},
                 "title":   {"string": "Scaled Embedding Input" , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"   , "scale": 0.3, "color": WHITE, "value": d_model },

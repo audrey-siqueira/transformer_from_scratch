@@ -11,15 +11,18 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Multi-Head Attention}", color=WHITE).scale(0.5).to_edge(UP*0.001)
+        self.play(Write(title))
+
         formula = MathTex(
                               r"\text{Attention} = \text{softmax}\left(",
                               r"\frac{Q.K^\top}{\sqrt{d_k}}",
                               r"\right).V",
                               color=WHITE
-                          ).scale(0.5).to_edge(UP + LEFT)
+                          ).scale(0.4).to_edge(UP*1.2 + LEFT)
 
         explanation = MathTex(r"\text{where:}  \quad   d_k = 2",
-                              color=WHITE).scale(0.6).next_to(formula, RIGHT, buff= 2)
+                              color=WHITE).scale(0.5).next_to(formula, RIGHT, buff= 7)
 
         self.play(Write(formula))
         self.play(Write(explanation))
@@ -89,7 +92,7 @@ class generate(Scene):
 
         
 
-        split(position   = LEFT*0.2 + UP*4,
+        split(position   = LEFT*0.2 + UP*5,
               arg_1      = attention_scores[0][0],
               arg_2      = attention_scores_dropout[0][0],
               color_2    = WHITE,
@@ -98,7 +101,7 @@ class generate(Scene):
               arg_4      = AV[0][0],
               order      = "1")
 
-        split(position   = LEFT*0.2 + UP*12,
+        split(position   = LEFT*0.2 + UP*13,
               arg_1      = attention_scores[0][1],
               arg_2      = attention_scores_dropout[0][1],
               color_2    = WHITE,
@@ -109,7 +112,7 @@ class generate(Scene):
 
 
         #arrow
-        arrow = MathTex(r"\longrightarrow", color=WHITE).scale(1).shift(RIGHT *3 + DOWN*0.4)
+        arrow = MathTex(r"\longrightarrow", color=WHITE).scale(1).shift(RIGHT *3 + DOWN*0.8)
         label = Text("Concat").scale(0.15).set_color(WHITE).next_to(arrow, UP, buff=0.1)
         self.play(Write(arrow), Write(label))
 

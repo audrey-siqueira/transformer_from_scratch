@@ -6,6 +6,7 @@ import sys
 sys.path.append("..") 
 from manim_functions import *
 
+
 class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
@@ -23,7 +24,7 @@ class generate(Scene):
 
         #Neural Network Input
         dic = { "matrix":  {"values": residual_output_1[0]    ,"scale": 0.35, "color": WHITE},
-                "title":   {"string": "\\text{Neural Network Input}"     , "scale": 0.35, "color": WHITE},
+                "title":   {"string": "\\text{Feed Forward Input}"     , "scale": 0.35, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"    , "scale": 0.35, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                  , "scale": 0.35, "color": WHITE, "value": len(input_x)}
               }
@@ -128,7 +129,7 @@ class generate(Scene):
 
         #final input
         dic = { "matrix":  {"values": normalized_2[0]                      ,"scale": 0.35, "color": WHITE},
-                "title":   {"string": "\\text{Normalized Neural Network Input}"   , "scale": 0.35, "color": WHITE},
+                "title":   {"string": "\\text{Normalized Feed Forward Input}"   , "scale": 0.35, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"               , "scale": 0.35, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                             , "scale": 0.35, "color": WHITE, "value": len(input_x)}
               }

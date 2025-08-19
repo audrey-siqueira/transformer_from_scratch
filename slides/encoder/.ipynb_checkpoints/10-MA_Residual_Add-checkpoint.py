@@ -10,6 +10,9 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Residual Add}", color=WHITE).scale(0.5).to_edge(UP*0.5)
+        self.play(Write(title))
+
         #output_dropout
         dic = { "matrix":  {"values": output_dropout_1[0]  , "scale": 0.3, "color": WHITE},
                 "title":   {"string": "\\text{Output}"         , "scale": 0.3, "color": WHITE},
@@ -49,7 +52,7 @@ class generate(Scene):
 
         #add
         dic = { "matrix":  {"values": residual_output_1[0]                     , "scale": 0.3, "color": WHITE},
-                "title":   {"string": "\\text{Neural Network Input}"         , "scale": 0.3, "color": WHITE},
+                "title":   {"string": "\\text{Feed Forward Input}"         , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"                 , "scale": 0.3, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                               , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }

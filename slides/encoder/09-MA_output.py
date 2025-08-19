@@ -11,6 +11,9 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Multi-Head Attention}", color=WHITE).scale(0.5).to_edge(UP*0.001)
+        self.play(Write(title))
+
         #formula
         formula = MathTex(
                           r"\text{Output}",
@@ -19,7 +22,7 @@ class generate(Scene):
                           r"\times",
                           r"\mathbf{W}_o^\top",
                           color=WHITE
-                          ).scale(0.45).to_edge(UP + LEFT)
+                          ).scale(0.45).to_edge(UP*1.5 + LEFT)
 
 
         self.play(Write(formula))
@@ -28,7 +31,7 @@ class generate(Scene):
         #AV_conti
         dic = { "matrix":  {"values": AV_cont[0]                   , "scale": 0.3, "color": WHITE},
                 "title":   {"string": "\\text{Total Attention}" , "scale": 0.3, "color": WHITE},
-                "label_x": {"string": ""                        , "scale": 0.3, "color": WHITE, "value": ""},
+                "label_x": {"string": "Embedding Dimensions"    ,"scale": 0.3, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                  , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
         group_1 = build_matrix(self,dic,f=True)
@@ -45,8 +48,8 @@ class generate(Scene):
         #w_o
         dic = { "matrix":  {"values": w_o                  , "scale": 0.3, "color": YELLOW},
                 "title":   {"string": "\\text{Weights O}"  , "scale": 0.3, "color": YELLOW},
-                "label_x": {"string": ""                   , "scale": 0.3, "color": YELLOW, "value": ""},
-                "label_y": {"string": "Tokens"             , "scale": 0.3, "color": YELLOW, "value": len(input_x)}
+                "label_x": {"string": "Embedding Dimensions"  , "scale": 0.3, "color": YELLOW, "value": d_model},
+                "label_y": {"string": "Embedding Dimensions"  , "scale": 0.3, "color": YELLOW, "value": d_model}
               }
         group_2 = build_matrix(self,dic,f=True)
         group_2.next_to(times, RIGHT, buff=0.5).align_to(group_1, DOWN)
@@ -69,8 +72,8 @@ class generate(Scene):
         #output
         dic = { "matrix":  {"values": output[0]         , "scale": 0.3, "color": WHITE},
                 "title":   {"string": "\\text{Output}"  , "scale": 0.3, "color": WHITE},
-                "label_x": {"string": ""                , "scale": 0.3, "color": WHITE, "value": ""},
-                "label_y": {"string": "Tokens"          , "scale": 0.3, "color": WHITE, "value": len(input_x)}
+                "label_x": {"string": "Embedding Dimensions"   , "scale": 0.3, "color": WHITE, "value": d_model},
+                "label_y": {"string": "Tokens"   , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
         group_3 = build_matrix(self,dic,f=True)
         group_3.next_to(equal, RIGHT, buff=0.4).align_to(group_1, DOWN) 
@@ -78,7 +81,7 @@ class generate(Scene):
 
 
         #arrow
-        arrow = MathTex(r"\downarrow", color=WHITE).scale(1).move_to(group_3.get_center()  + DOWN * 1.4)  
+        arrow = MathTex(r"\downarrow", color=WHITE).scale(1).move_to(group_3.get_center()  + DOWN * 1.6)  
         label = Text(f"Dropout = {dropout}").scale(0.15).set_color(WHITE).next_to(arrow, RIGHT, buff=0.1)
         self.play(Write(arrow), Write(label))
 
@@ -86,7 +89,7 @@ class generate(Scene):
         #output_dropout
         dic = { "matrix":  {"values": output_dropout_1[0]  , "scale": 0.3, "color": WHITE},
                 "title":   {"string": "\\text{Output}"         , "scale": 0.3, "color": WHITE},
-                "label_x": {"string": ""                       , "scale": 0.3, "color": WHITE, "value": ""},
+                "label_x": {"string": "Embedding Dimensions"   , "scale": 0.3, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                 , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
         group_4 = build_matrix(self,dic,f=True)
