@@ -169,3 +169,32 @@ def ellipsis_cols(mat, left=3, right=3, dots=2, symbol=r"\vdots"):
     
     return [row[:left] + [symbol]*dots + row[-right:] for row in mat]
 
+
+
+
+
+def glossary(data,font_table,font_letter):
+    
+    table = Table(
+        data,
+        col_labels=[Text("Glossary", color=YELLOW), Text("Description", color=YELLOW)],
+        include_outer_lines=True,
+        line_config={"stroke_color": WHITE, "stroke_width": 1},
+        element_to_mobject=lambda x: Text(x).scale(font_letter)
+    ).scale(font_table).to_edge(UP)
+
+    
+    green_square = Square(side_length=0.1, color=GREEN, fill_opacity=1)
+    green_label = Text("Fixed maps (lookup tables)", font_size=15, color=WHITE).next_to(green_square, RIGHT, buff=0.2)
+    legend1 = VGroup(green_square, green_label)
+
+    yellow_square = Square(side_length=0.1, color=YELLOW, fill_opacity=1)
+    yellow_label = Text("Parameters adjusted at each transformer pass", font_size=15, color=WHITE).next_to(yellow_square, RIGHT, buff=0.2)
+    legend2 = VGroup(yellow_square, yellow_label)
+
+    legends = VGroup(legend1, legend2).arrange(DOWN, aligned_edge=LEFT, buff=0.4)
+    legends.next_to(table, DOWN, buff=1.5).align_to(table, LEFT)
+
+   
+    return VGroup(table, legends)
+
