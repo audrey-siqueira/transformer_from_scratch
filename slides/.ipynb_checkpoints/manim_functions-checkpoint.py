@@ -173,7 +173,7 @@ def ellipsis_cols(mat, left=3, right=3, dots=2, symbol=r"\vdots"):
 
 
 
-def glossary(data,font_table,font_letter):
+def glossary(data,font_table = 0.35, font_letter = 0.75):
     
     table = Table(
         data,
