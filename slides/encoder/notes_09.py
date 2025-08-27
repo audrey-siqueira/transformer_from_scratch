@@ -26,7 +26,7 @@ class generate(Scene):
 
         
 
-        scene = glossary(data,0.35,0.75)
+        scene = glossary(data)
         self.play(Create(scene[0]))   
         self.play(FadeIn(scene[1]))   
         self.wait(200)

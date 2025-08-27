@@ -10,9 +10,12 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Feed Forward}", color=WHITE).scale(0.5).to_edge(UP*0.5)
+        self.play(Write(title))
+
         #final input
         dic = { "matrix":  {"values": normalized_3[0]                 ,"scale": 0.3, "color": WHITE},
-                "title":   {"string": "\\text{Normalized Neural Network Input}"   , "scale": 0.3, "color": WHITE},
+                "title":   {"string": "\\text{Normalized Feed Forward Input}"   , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"           , "scale": 0.3, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                         , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
@@ -56,7 +59,7 @@ class generate(Scene):
         self.play(Write(equal))
 
         #animation
-        nn_calculation(self, equal, group_1, WHITE, group_2, YELLOW, group_3, YELLOW, 1.6)
+        #nn_calculation(self, equal, group_1, WHITE, group_2, YELLOW, group_3, YELLOW, 1.6)
 
    
         #first out

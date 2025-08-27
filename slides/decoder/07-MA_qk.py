@@ -12,6 +12,10 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Masked Multi-Head Attention}", color=WHITE).scale(0.5).to_edge(UP*0.001)
+        self.play(Write(title))
+
+
         formula = MathTex(
                               r"\text{Attention} = \text{softmax}\left(",
                               r"\frac{Q.K^\top}{\sqrt{d_k}}",
@@ -66,7 +70,7 @@ class generate(Scene):
 
 
             #animation
-            animation_T(self,equal,group_1,color_1,group_2,color_2,0.8)
+            #animation_T(self,equal,group_1,color_1,group_2,color_2,0.8)
 
 
             #QK

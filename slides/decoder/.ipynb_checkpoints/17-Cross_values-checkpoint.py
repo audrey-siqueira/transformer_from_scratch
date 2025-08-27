@@ -11,6 +11,9 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Multi-Head Cross-Attention}", color=WHITE).scale(0.5).to_edge(UP*0.001)
+        self.play(Write(title))
+
         formula = MathTex(
                               r"\text{Attention} = \text{softmax}\left(",
                               r"\frac{Q.K^\top}{\sqrt{d_k}}",
@@ -19,7 +22,7 @@ class generate(Scene):
                           ).scale(0.5).to_edge(UP + LEFT)
 
         explanation = MathTex(r"\text{where:}  \quad   d_k = 2",
-                              color=WHITE).scale(0.6).next_to(formula, RIGHT, buff= 2)
+                              color=WHITE).scale(0.5).next_to(formula, RIGHT, buff= 7)
 
         self.play(Write(formula))
         self.play(Write(explanation))
@@ -73,7 +76,7 @@ class generate(Scene):
             equal = MathTex(r"=", color=WHITE).scale(0.5).move_to(group_3[0].get_center()  + RIGHT) 
             self.play(Write(equal))
 
-            animation_R(self,equal,group_2,color_2,group_3,color_3 ,0.8) 
+            #animation_R(self,equal,group_2,color_2,group_3,color_3 ,0.8) 
 
             #AV
             dic = { "matrix":  {"values": arg_4                              , "scale": 0.3, "color": WHITE},
@@ -116,7 +119,7 @@ class generate(Scene):
 
         #AV_cont
         dic = { "matrix":  {"values": cross_AV_cont[0]                    , "scale": 0.3, "color": WHITE},
-                "title":   {"string": "\\text{Total Attention}"     , "scale": 0.3, "color": WHITE},
+                "title":   {"string": "\\text{Total Cross-Attention}"     , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"        , "scale": 0.3, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                      , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }

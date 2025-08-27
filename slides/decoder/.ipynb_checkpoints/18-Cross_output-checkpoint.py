@@ -11,6 +11,10 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Multi-Head Cross-Attention}", color=WHITE).scale(0.5).to_edge(UP*0.001)
+        self.play(Write(title))
+
+
         #formula
         formula = MathTex(
                           r"\text{Output}",
@@ -27,7 +31,7 @@ class generate(Scene):
 
         #AV_conti
         dic = { "matrix":  {"values": cross_AV_cont[0]                   , "scale": 0.3, "color": WHITE},
-                "title":   {"string": "\\text{Total Attention}" , "scale": 0.3, "color": WHITE},
+                "title":   {"string": "\\text{Total Cross-Attention}" , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": ""                        , "scale": 0.3, "color": WHITE, "value": ""},
                 "label_y": {"string": "Tokens"                  , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
@@ -64,11 +68,11 @@ class generate(Scene):
 
         
         #animation
-        animation_T(self,equal,group_1,WHITE,group_2,YELLOW, 1.6)
+        #animation_T(self,equal,group_1,WHITE,group_2,YELLOW, 1.6)
 
         #output
         dic = { "matrix":  {"values": cross_output[0]         , "scale": 0.3, "color": WHITE},
-                "title":   {"string": "\\text{Output}"  , "scale": 0.3, "color": WHITE},
+                "title":   {"string": "\\text{Multi-Head Cross-Attention Output}"  , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": ""                , "scale": 0.3, "color": WHITE, "value": ""},
                 "label_y": {"string": "Tokens"          , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
@@ -85,7 +89,7 @@ class generate(Scene):
 
         #output_dropout
         dic = { "matrix":  {"values": output_dropout_2[0]  , "scale": 0.3, "color": WHITE},
-                "title":   {"string": "\\text{Output}"         , "scale": 0.3, "color": WHITE},
+                "title":   {"string": "\\text{Multi-Head Cross-Attention Output}"         , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": ""                       , "scale": 0.3, "color": WHITE, "value": ""},
                 "label_y": {"string": "Tokens"                 , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }

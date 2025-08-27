@@ -10,6 +10,11 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+
+        title = MathTex(r"\text{Projection Layer}", color=WHITE).scale(0.5).to_edge(UP*0.5)
+        self.play(Write(title))
+        
+
         #final input
         dic = { "matrix":  {"values": normalized_4[0]                 ,"scale": 0.3, "color": WHITE},
                 "title":   {"string": "\\text{Normalized Decoder Output}"   , "scale": 0.3, "color": WHITE},

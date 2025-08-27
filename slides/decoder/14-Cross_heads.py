@@ -11,6 +11,9 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Multi-Head Cross-Attention}", color=WHITE).scale(0.4).to_edge(UP*0.001)
+        self.play(Write(title))
+
         def split(position,string_1,arg_1,string_2,arg_2,color):
 
             #Query,Key,Value
@@ -50,14 +53,14 @@ class generate(Scene):
             head_2.next_to(head_1, buff=0.5)
             self.play(Write(head_2))
 
-        split(position   = LEFT + UP*0.05 ,
+        split(position   = LEFT + UP*2 ,
               string_1   = "Query",
               arg_1      = cross_query,
               string_2   = "Query head",
               arg_2      = cross_h_query,
               color      = BLUE_C)
 
-        split(position   = LEFT ,
+        split(position   = LEFT + UP*11 ,
                 string_1   = "Key",
                 arg_1      = cross_key,
                 string_2   = "Key head",

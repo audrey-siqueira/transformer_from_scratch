@@ -11,6 +11,9 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Multi-Head Cross-Attention}", color=WHITE).scale(0.4).to_edge(UP*0.001)
+        self.play(Write(title))
+
         def mult_matrix(position,string_1,arg_1,string_2,arg_2,string_3,arg_3,color,string_4):
 
               #formula
@@ -69,7 +72,7 @@ class generate(Scene):
 
 
               #animation
-              animation_T(self,equal,group_1,WHITE,group_2,YELLOW, 1.6)
+              #animation_T(self,equal,group_1,WHITE,group_2,YELLOW, 1.6)
 
 
               #Query,Key,Value
@@ -84,7 +87,7 @@ class generate(Scene):
 
 
 
-        mult_matrix(position   = LEFT*0.5 + UP*2.3 ,
+        mult_matrix(position   = LEFT*0.5 + UP*3.1 ,
                     string_1   = "q",
                     arg_1      = cross_q,
                     string_2   = "Q",
@@ -92,10 +95,10 @@ class generate(Scene):
                     string_3   = "Query",
                     arg_3      = cross_query,
                     color      = BLUE_C,
-                    string_4   = "Normalized Total Input (q)")
+                    string_4   = "Normalized Multi-Head Cross-Attention Input")
 
 
-        mult_matrix(position   = LEFT*0.5 ,
+        mult_matrix(position   = LEFT*0.5 + UP*8.5 ,
                     string_1   = "k",
                     arg_1      = cross_k,
                     string_2   = "K",
@@ -103,10 +106,10 @@ class generate(Scene):
                     string_3   = "Key",
                     arg_3      = cross_key,
                     color      = PURE_RED,
-                    string_4   = "Encoder Output")
+                    string_4   = "Encoder Output = Memory")
 
 
-        mult_matrix(position   = LEFT*0.5 + DOWN*2.3,
+        mult_matrix(position   = LEFT*0.5 + DOWN*1.7,
                     string_1   = "v",
                     arg_1      = cross_v,
                     string_2   = "V",
@@ -114,7 +117,7 @@ class generate(Scene):
                     string_3   = "Value",
                     arg_3      = cross_value,
                     color      = PURE_GREEN,
-                    string_4   = "Encoder Output")
+                    string_4   = "Encoder Output = Memory")
 
 
         self.wait(60)

@@ -10,9 +10,12 @@ class generate(Scene):
     def construct(self):
         self.camera.background_color = BLACK
 
+        title = MathTex(r"\text{Feed Forward}", color=WHITE).scale(0.5).to_edge(UP*0.5)
+        self.play(Write(title))
+
         dic = { "matrix":  {"values": nn_first_dropout[0]           , "scale": 0.3, "color": WHITE},
                 "title":   {"string": "\\text{Second Layer Input}"  , "scale": 0.3, "color": WHITE},
-                "label_x": {"string": "Embedding Dimensions"           , "scale": 0.3, "color": WHITE, "value": d_model*2},
+                "label_x": {"string": "Embedding Dimensions"        , "scale": 0.3, "color": WHITE, "value": d_model*2},
                 "label_y": {"string": "Tokens"                      , "scale": 0.3, "color": WHITE, "value": len(input_x)}
                }
         group_1 = build_matrix(self,dic,f=True)
@@ -55,12 +58,12 @@ class generate(Scene):
         self.play(Write(equal))
 
         #animation
-        nn_calculation(self, equal, group_1, WHITE, group_2, YELLOW, group_3, YELLOW, 3)
+        #nn_calculation(self, equal, group_1, WHITE, group_2, YELLOW, group_3, YELLOW, 3)
 
    
         #nn output
         dic = { "matrix":  {"values": nn_output[0]                        , "scale": 0.3, "color": WHITE},
-                "title":   {"string": "\\text{Neural Network Output}"     , "scale": 0.3, "color": WHITE},
+                "title":   {"string": "\\text{Feed Forward Output}"     , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"              , "scale": 0.3, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                            , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }
@@ -77,7 +80,7 @@ class generate(Scene):
 
         #nn output dropout
         dic = { "matrix":  {"values": output_dropout_3[0]                   , "scale": 0.3, "color": WHITE},
-                "title":   {"string": "\\text{Neural Network Output}"        , "scale": 0.3, "color": WHITE},
+                "title":   {"string": "\\text{Feed Forward Output}"        , "scale": 0.3, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"                 , "scale": 0.3, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                               , "scale": 0.3, "color": WHITE, "value": len(input_x)}
               }

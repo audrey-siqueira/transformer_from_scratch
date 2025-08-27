@@ -25,7 +25,7 @@ class generate(Scene):
 
         #total input dropout
         dic = { "matrix":  {"values": residual_output_1[0]       ,"scale": 0.35, "color": WHITE},
-                "title":   {"string": "\\text{Total Input}"     , "scale": 0.35, "color": WHITE},
+                "title":   {"string": "\\text{Multi-Head Cross-Attention Input}"     , "scale": 0.35, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"    , "scale": 0.35, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                  , "scale": 0.35, "color": WHITE, "value": len(input_x)}
               }
@@ -130,7 +130,7 @@ class generate(Scene):
 
         #final input
         dic = { "matrix":  {"values": normalized_2[0]                          ,"scale": 0.35, "color": WHITE},
-                "title":   {"string": "\\text{Normalized Total Input}"     , "scale": 0.35, "color": WHITE},
+                "title":   {"string": "\\text{Normalized Multi-Head Cross-Attention Input}"     , "scale": 0.35, "color": WHITE},
                 "label_x": {"string": "Embedding Dimensions"               , "scale": 0.35, "color": WHITE, "value": d_model},
                 "label_y": {"string": "Tokens"                             , "scale": 0.35, "color": WHITE, "value": len(input_x)}
               }
